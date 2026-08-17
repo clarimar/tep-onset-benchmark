@@ -1,0 +1,593 @@
+{
+  "summary": {
+    "overall_status": "PASS",
+    "critical_failures": 0,
+    "warnings": 0,
+    "expected_classes": 21,
+    "n_features": 52,
+    "columns": {
+      "label": "faultNumber",
+      "run": "simulationRun",
+      "time": "sample",
+      "features": [
+        "xmeas_1",
+        "xmeas_2",
+        "xmeas_3",
+        "xmeas_4",
+        "xmeas_5",
+        "xmeas_6",
+        "xmeas_7",
+        "xmeas_8",
+        "xmeas_9",
+        "xmeas_10",
+        "xmeas_11",
+        "xmeas_12",
+        "xmeas_13",
+        "xmeas_14",
+        "xmeas_15",
+        "xmeas_16",
+        "xmeas_17",
+        "xmeas_18",
+        "xmeas_19",
+        "xmeas_20",
+        "xmeas_21",
+        "xmeas_22",
+        "xmeas_23",
+        "xmeas_24",
+        "xmeas_25",
+        "xmeas_26",
+        "xmeas_27",
+        "xmeas_28",
+        "xmeas_29",
+        "xmeas_30",
+        "xmeas_31",
+        "xmeas_32",
+        "xmeas_33",
+        "xmeas_34",
+        "xmeas_35",
+        "xmeas_36",
+        "xmeas_37",
+        "xmeas_38",
+        "xmeas_39",
+        "xmeas_40",
+        "xmeas_41",
+        "xmv_1",
+        "xmv_2",
+        "xmv_3",
+        "xmv_4",
+        "xmv_5",
+        "xmv_6",
+        "xmv_7",
+        "xmv_8",
+        "xmv_9",
+        "xmv_10",
+        "xmv_11"
+      ]
+    },
+    "files": {
+      "train": "/home/clarimar/Dropbox/aulas/ppgeiia/MEI0028/ProjetoA_TEP/data/processed/train.parquet",
+      "validation": "/home/clarimar/Dropbox/aulas/ppgeiia/MEI0028/ProjetoA_TEP/data/processed/validation.parquet",
+      "test": "/home/clarimar/Dropbox/aulas/ppgeiia/MEI0028/ProjetoA_TEP/data/processed/test.parquet"
+    },
+    "environment": {
+      "python": "3.12.13 (main, Jun 23 2026, 15:18:55) [Clang 22.1.3 ]",
+      "platform": "Linux-7.0.0-27-generic-x86_64-with-glibc2.43",
+      "numpy": "2.5.1",
+      "pandas": "3.0.3"
+    },
+    "parameters": {
+      "processed_dir": "data/processed",
+      "output_dir": "results/wp1a_quality_control_v3_1",
+      "train_file": null,
+      "validation_file": null,
+      "test_file": null,
+      "label_column": null,
+      "run_column": null,
+      "time_column": null,
+      "expected_classes": 21,
+      "duplicate_sample_size": 250000,
+      "leakage_sample_size": 200000,
+      "numeric_sample_size": 300000,
+      "standardized_mean_tolerance": 0.1,
+      "standardized_std_tolerance": 0.15,
+      "skip_standardization_check": false,
+      "run_id_global": false,
+      "strict": false,
+      "force": true,
+      "verbose": true
+    },
+    "elapsed_seconds": 12.354475419000664
+  },
+  "checks": [
+    {
+      "check": "schema_columns",
+      "status": "PASS",
+      "severity": "critical",
+      "split": "validation",
+      "value": 56,
+      "threshold": 56,
+      "message": "Esquema idêntico ao treino."
+    },
+    {
+      "check": "schema_columns",
+      "status": "PASS",
+      "severity": "critical",
+      "split": "test",
+      "value": 56,
+      "threshold": 56,
+      "message": "Esquema idêntico ao treino."
+    },
+    {
+      "check": "non_empty_split",
+      "status": "PASS",
+      "severity": "critical",
+      "split": "train",
+      "value": 4200000,
+      "threshold": "> 0",
+      "message": "Partição contém observações."
+    },
+    {
+      "check": "missing_labels",
+      "status": "PASS",
+      "severity": "critical",
+      "split": "train",
+      "value": 0,
+      "threshold": 0,
+      "message": "Nenhum rótulo ausente."
+    },
+    {
+      "check": "number_of_classes",
+      "status": "PASS",
+      "severity": "warning",
+      "split": "train",
+      "value": 21,
+      "threshold": 21,
+      "message": "Número de classes conforme o esperado."
+    },
+    {
+      "check": "missing_feature_values",
+      "status": "PASS",
+      "severity": "critical",
+      "split": "train",
+      "value": 0,
+      "threshold": 0,
+      "message": "Nenhum valor ausente nos atributos amostrados."
+    },
+    {
+      "check": "infinite_feature_values",
+      "status": "PASS",
+      "severity": "critical",
+      "split": "train",
+      "value": 0,
+      "threshold": 0,
+      "message": "Nenhum valor infinito nos atributos amostrados."
+    },
+    {
+      "check": "constant_features",
+      "status": "PASS",
+      "severity": "warning",
+      "split": "train",
+      "value": 0,
+      "threshold": 0,
+      "message": "Nenhuma variável constante."
+    },
+    {
+      "check": "exact_duplicates_sample",
+      "status": "PASS",
+      "severity": "warning",
+      "split": "train",
+      "value": "0 (0.000000%)",
+      "threshold": 0,
+      "message": "Nenhuma duplicata exata na amostra."
+    },
+    {
+      "check": "non_empty_split",
+      "status": "PASS",
+      "severity": "critical",
+      "split": "validation",
+      "value": 1050000,
+      "threshold": "> 0",
+      "message": "Partição contém observações."
+    },
+    {
+      "check": "missing_labels",
+      "status": "PASS",
+      "severity": "critical",
+      "split": "validation",
+      "value": 0,
+      "threshold": 0,
+      "message": "Nenhum rótulo ausente."
+    },
+    {
+      "check": "number_of_classes",
+      "status": "PASS",
+      "severity": "warning",
+      "split": "validation",
+      "value": 21,
+      "threshold": 21,
+      "message": "Número de classes conforme o esperado."
+    },
+    {
+      "check": "missing_feature_values",
+      "status": "PASS",
+      "severity": "critical",
+      "split": "validation",
+      "value": 0,
+      "threshold": 0,
+      "message": "Nenhum valor ausente nos atributos amostrados."
+    },
+    {
+      "check": "infinite_feature_values",
+      "status": "PASS",
+      "severity": "critical",
+      "split": "validation",
+      "value": 0,
+      "threshold": 0,
+      "message": "Nenhum valor infinito nos atributos amostrados."
+    },
+    {
+      "check": "constant_features",
+      "status": "PASS",
+      "severity": "warning",
+      "split": "validation",
+      "value": 0,
+      "threshold": 0,
+      "message": "Nenhuma variável constante."
+    },
+    {
+      "check": "exact_duplicates_sample",
+      "status": "PASS",
+      "severity": "warning",
+      "split": "validation",
+      "value": "0 (0.000000%)",
+      "threshold": 0,
+      "message": "Nenhuma duplicata exata na amostra."
+    },
+    {
+      "check": "non_empty_split",
+      "status": "PASS",
+      "severity": "critical",
+      "split": "test",
+      "value": 10080000,
+      "threshold": "> 0",
+      "message": "Partição contém observações."
+    },
+    {
+      "check": "missing_labels",
+      "status": "PASS",
+      "severity": "critical",
+      "split": "test",
+      "value": 0,
+      "threshold": 0,
+      "message": "Nenhum rótulo ausente."
+    },
+    {
+      "check": "number_of_classes",
+      "status": "PASS",
+      "severity": "warning",
+      "split": "test",
+      "value": 21,
+      "threshold": 21,
+      "message": "Número de classes conforme o esperado."
+    },
+    {
+      "check": "missing_feature_values",
+      "status": "PASS",
+      "severity": "critical",
+      "split": "test",
+      "value": 0,
+      "threshold": 0,
+      "message": "Nenhum valor ausente nos atributos amostrados."
+    },
+    {
+      "check": "infinite_feature_values",
+      "status": "PASS",
+      "severity": "critical",
+      "split": "test",
+      "value": 0,
+      "threshold": 0,
+      "message": "Nenhum valor infinito nos atributos amostrados."
+    },
+    {
+      "check": "constant_features",
+      "status": "PASS",
+      "severity": "warning",
+      "split": "test",
+      "value": 0,
+      "threshold": 0,
+      "message": "Nenhuma variável constante."
+    },
+    {
+      "check": "exact_duplicates_sample",
+      "status": "PASS",
+      "severity": "warning",
+      "split": "test",
+      "value": "0 (0.000000%)",
+      "threshold": 0,
+      "message": "Nenhuma duplicata exata na amostra."
+    },
+    {
+      "check": "trajectory_original_order",
+      "status": "PASS",
+      "severity": "warning",
+      "split": "train",
+      "value": 0,
+      "threshold": 0,
+      "message": "Todas as trajetórias estão ordenadas no arquivo."
+    },
+    {
+      "check": "trajectory_duplicate_time_points",
+      "status": "PASS",
+      "severity": "critical",
+      "split": "train",
+      "value": 0,
+      "threshold": 0,
+      "message": "Não há pares duplicados de classe, execução e tempo."
+    },
+    {
+      "check": "trajectory_missing_time",
+      "status": "PASS",
+      "severity": "critical",
+      "split": "train",
+      "value": 0,
+      "threshold": 0,
+      "message": "Não há valores temporais ausentes."
+    },
+    {
+      "check": "trajectory_gaps",
+      "status": "PASS",
+      "severity": "warning",
+      "split": "train",
+      "value": 0,
+      "threshold": 0,
+      "message": "Não foram detectadas lacunas temporais."
+    },
+    {
+      "check": "trajectory_length_summary",
+      "status": "PASS",
+      "severity": "info",
+      "split": "train",
+      "value": {
+        "runs": 8400,
+        "min": 500,
+        "median": 500.0,
+        "mean": 500.0,
+        "max": 500
+      },
+      "threshold": "descriptive",
+      "message": "Resumo descritivo do comprimento das trajetórias."
+    },
+    {
+      "check": "trajectory_original_order",
+      "status": "PASS",
+      "severity": "warning",
+      "split": "validation",
+      "value": 0,
+      "threshold": 0,
+      "message": "Todas as trajetórias estão ordenadas no arquivo."
+    },
+    {
+      "check": "trajectory_duplicate_time_points",
+      "status": "PASS",
+      "severity": "critical",
+      "split": "validation",
+      "value": 0,
+      "threshold": 0,
+      "message": "Não há pares duplicados de classe, execução e tempo."
+    },
+    {
+      "check": "trajectory_missing_time",
+      "status": "PASS",
+      "severity": "critical",
+      "split": "validation",
+      "value": 0,
+      "threshold": 0,
+      "message": "Não há valores temporais ausentes."
+    },
+    {
+      "check": "trajectory_gaps",
+      "status": "PASS",
+      "severity": "warning",
+      "split": "validation",
+      "value": 0,
+      "threshold": 0,
+      "message": "Não foram detectadas lacunas temporais."
+    },
+    {
+      "check": "trajectory_length_summary",
+      "status": "PASS",
+      "severity": "info",
+      "split": "validation",
+      "value": {
+        "runs": 2100,
+        "min": 500,
+        "median": 500.0,
+        "mean": 500.0,
+        "max": 500
+      },
+      "threshold": "descriptive",
+      "message": "Resumo descritivo do comprimento das trajetórias."
+    },
+    {
+      "check": "trajectory_original_order",
+      "status": "PASS",
+      "severity": "warning",
+      "split": "test",
+      "value": 0,
+      "threshold": 0,
+      "message": "Todas as trajetórias estão ordenadas no arquivo."
+    },
+    {
+      "check": "trajectory_duplicate_time_points",
+      "status": "PASS",
+      "severity": "critical",
+      "split": "test",
+      "value": 0,
+      "threshold": 0,
+      "message": "Não há pares duplicados de classe, execução e tempo."
+    },
+    {
+      "check": "trajectory_missing_time",
+      "status": "PASS",
+      "severity": "critical",
+      "split": "test",
+      "value": 0,
+      "threshold": 0,
+      "message": "Não há valores temporais ausentes."
+    },
+    {
+      "check": "trajectory_gaps",
+      "status": "PASS",
+      "severity": "warning",
+      "split": "test",
+      "value": 0,
+      "threshold": 0,
+      "message": "Não foram detectadas lacunas temporais."
+    },
+    {
+      "check": "trajectory_length_summary",
+      "status": "PASS",
+      "severity": "info",
+      "split": "test",
+      "value": {
+        "runs": 10500,
+        "min": 960,
+        "median": 960.0,
+        "mean": 960.0,
+        "max": 960
+      },
+      "threshold": "descriptive",
+      "message": "Resumo descritivo do comprimento das trajetórias."
+    },
+    {
+      "check": "run_id_overlap",
+      "status": "PASS",
+      "severity": "info",
+      "split": "train x validation",
+      "value": 491,
+      "threshold": 0,
+      "message": "Há números de execução repetidos entre as partições. No TEP isso é esperado porque simulationRun é um identificador local e pode ser reiniciado. A repetição foi registrada apenas como informação contextual."
+    },
+    {
+      "check": "run_id_overlap",
+      "status": "PASS",
+      "severity": "info",
+      "split": "train x test",
+      "value": 500,
+      "threshold": 0,
+      "message": "Há números de execução repetidos entre as partições. No TEP isso é esperado porque simulationRun é um identificador local e pode ser reiniciado. A repetição foi registrada apenas como informação contextual."
+    },
+    {
+      "check": "run_id_overlap",
+      "status": "PASS",
+      "severity": "info",
+      "split": "validation x test",
+      "value": 491,
+      "threshold": 0,
+      "message": "Há números de execução repetidos entre as partições. No TEP isso é esperado porque simulationRun é um identificador local e pode ser reiniciado. A repetição foi registrada apenas como informação contextual."
+    },
+    {
+      "check": "row_hash_overlap_sample",
+      "status": "PASS",
+      "severity": "warning",
+      "split": "train x validation",
+      "value": 0,
+      "threshold": 0,
+      "message": "Nenhuma linha idêntica encontrada nas amostras cruzadas."
+    },
+    {
+      "check": "row_hash_overlap_sample",
+      "status": "PASS",
+      "severity": "warning",
+      "split": "train x test",
+      "value": 0,
+      "threshold": 0,
+      "message": "Nenhuma linha idêntica encontrada nas amostras cruzadas."
+    },
+    {
+      "check": "row_hash_overlap_sample",
+      "status": "PASS",
+      "severity": "warning",
+      "split": "validation x test",
+      "value": 0,
+      "threshold": 0,
+      "message": "Nenhuma linha idêntica encontrada nas amostras cruzadas."
+    },
+    {
+      "check": "training_standardization_sample",
+      "status": "PASS",
+      "severity": "warning",
+      "split": "train",
+      "value": 0,
+      "threshold": 0,
+      "message": "As variáveis de treino parecem padronizadas."
+    }
+  ],
+  "splits": [
+    {
+      "split": "train",
+      "file": "/home/clarimar/Dropbox/aulas/ppgeiia/MEI0028/ProjetoA_TEP/data/processed/train.parquet",
+      "size_mb": 411.349,
+      "rows": 4200000,
+      "columns": 56,
+      "features": 52,
+      "classes": 21,
+      "missing_labels": 0,
+      "sampled_rows": 300000
+    },
+    {
+      "split": "validation",
+      "file": "/home/clarimar/Dropbox/aulas/ppgeiia/MEI0028/ProjetoA_TEP/data/processed/validation.parquet",
+      "size_mb": 125.521,
+      "rows": 1050000,
+      "columns": 56,
+      "features": 52,
+      "classes": 21,
+      "missing_labels": 0,
+      "sampled_rows": 300000
+    },
+    {
+      "split": "test",
+      "file": "/home/clarimar/Dropbox/aulas/ppgeiia/MEI0028/ProjetoA_TEP/data/processed/test.parquet",
+      "size_mb": 921.726,
+      "rows": 10080000,
+      "columns": 56,
+      "features": 52,
+      "classes": 21,
+      "missing_labels": 0,
+      "sampled_rows": 300000
+    }
+  ],
+  "trajectory_summary": [
+    {
+      "split": "test",
+      "runs": 10500,
+      "min_length": 960,
+      "median_length": 960.0,
+      "mean_length": 960.0,
+      "max_length": 960,
+      "duplicated_time_points": 0,
+      "runs_with_gaps": 0
+    },
+    {
+      "split": "train",
+      "runs": 8400,
+      "min_length": 500,
+      "median_length": 500.0,
+      "mean_length": 500.0,
+      "max_length": 500,
+      "duplicated_time_points": 0,
+      "runs_with_gaps": 0
+    },
+    {
+      "split": "validation",
+      "runs": 2100,
+      "min_length": 500,
+      "median_length": 500.0,
+      "mean_length": 500.0,
+      "max_length": 500,
+      "duplicated_time_points": 0,
+      "runs_with_gaps": 0
+    }
+  ]
+}

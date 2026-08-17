@@ -1,0 +1,17 @@
+{
+  "model": "random_forest",
+  "seed": 2026,
+  "candidate": 3,
+  "accuracy": 0.7272214285714286,
+  "balanced_accuracy": 0.7272214285714284,
+  "f1_macro": 0.7379436923814646,
+  "f1_weighted": 0.7379436923814646,
+  "mcc": 0.7137609508023044,
+  "training_seconds": 513.27880448,
+  "inference_seconds": 8.8122795029999,
+  "inference_ms_per_sample": 0.020981617864285474,
+  "model_size_bytes": 8706157377,
+  "n_train_rows": 420000,
+  "n_validation_rows": 420000,
+  "test_accessed": false
+}

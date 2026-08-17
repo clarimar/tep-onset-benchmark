@@ -1,0 +1,17 @@
+{
+  "model": "logistic_regression",
+  "seed": 2028,
+  "candidate": 2,
+  "accuracy": 0.4730785714285714,
+  "balanced_accuracy": 0.4730785714285714,
+  "f1_macro": 0.45967238017775386,
+  "f1_weighted": 0.4596723801777539,
+  "mcc": 0.4479410322730126,
+  "training_seconds": 62.38536404000024,
+  "inference_seconds": 0.047585800999513594,
+  "inference_ms_per_sample": 0.00011329952618931808,
+  "model_size_bytes": 5339,
+  "n_train_rows": 420000,
+  "n_validation_rows": 420000,
+  "test_accessed": false
+}

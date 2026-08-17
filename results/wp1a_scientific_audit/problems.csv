@@ -1,0 +1,13 @@
+category,criterion,weight,status,score,severity,evidence,recommendation
+structure,Abstract length and coverage,2.0,PARTIAL,1.0,major,Abstract word count: 102,Adjust abstract length and ensure it reports numerical findings and main contribution.
+structure,Keywords present,1.0,FAIL,0.0,minor,Keywords detected: 0,Provide 4–7 specific keywords.
+methodology,Experimental fairness discussed,1.5,FAIL,0.0,minor,Fair-comparison language searched.,Explain how identical splits and preprocessing were used for all models.
+statistics,Statistical significance testing reported,3.0,FAIL,0.0,critical,Statistical-test terminology searched.,Report the Friedman test and corrected pairwise comparisons already generated in WP1A.
+statistics,Effect size or practical significance discussed,2.0,FAIL,0.0,major,Effect-size terminology searched.,"Discuss magnitude and practical relevance, not only statistical significance."
+machine_learning,Model selection procedure described,2.5,FAIL,0.0,major,Model-selection terminology searched.,Describe how validation data guided model selection without test leakage.
+machine_learning,Class imbalance considered,2.0,FAIL,0.0,major,Class-imbalance terminology searched.,"Discuss class balance, sampling, and metric choice."
+reproducibility,Code availability stated,2.5,FAIL,0.0,major,Code-availability terminology searched.,Add a Code Availability Statement with repository URL and release tag.
+reproducibility,Data availability statement present,2.0,FAIL,0.0,major,Data-availability terminology searched.,Add a formal Data Availability Statement.
+reproducibility,Software versions reported,2.0,FAIL,0.0,major,Software/version terminology searched.,Report Python and library versions.
+reproducibility,Random seed reported,1.5,FAIL,0.0,minor,Random-seed terminology searched.,Report all random seeds and deterministic settings.
+reproducibility,Environment or requirements available,1.5,FAIL,0.0,minor,Environment-file terminology searched.,Archive pyproject.toml or requirements lock file with the code.

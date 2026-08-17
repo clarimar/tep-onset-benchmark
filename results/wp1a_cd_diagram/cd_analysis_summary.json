@@ -1,0 +1,49 @@
+{
+  "status": "PASS",
+  "split": "test",
+  "metric": "trajectory_accuracy",
+  "alpha": 0.05,
+  "n_models": 6,
+  "n_common_trajectories": 10500,
+  "trajectory_id_columns": [
+    "faultNumber",
+    "simulationRun"
+  ],
+  "models": [
+    "decision_tree",
+    "extra_trees",
+    "hist_gradient_boosting",
+    "linear_svm",
+    "logistic_regression",
+    "random_forest"
+  ],
+  "best_model_by_average_rank": "hist_gradient_boosting",
+  "best_average_rank": 2.706857142857143,
+  "friedman": {
+    "statistic": 15455.653919591054,
+    "p_value": 0.0,
+    "significant": true,
+    "kendalls_w": 0.29439340799221053,
+    "n_blocks": 10500,
+    "n_models": 6,
+    "alpha": 0.05
+  },
+  "critical_difference": {
+    "studentized_range_quantile": 4.030092053180576,
+    "q_alpha": 2.8497054196100016,
+    "standard_error": 0.025819888974716113,
+    "critical_difference": 0.07357907754497703
+  },
+  "nemenyi_significant_comparisons": 13,
+  "nemenyi_total_comparisons": 15,
+  "n_maximal_nonsignificant_groups": 2,
+  "friedman_crosscheck": {
+    "stored_available": true,
+    "recomputed_statistic": 15455.653919591054,
+    "recomputed_p_value": 0.0,
+    "stored_statistic": 15455.653919591054,
+    "stored_p_value": 0.0,
+    "absolute_statistic_difference": 0.0,
+    "absolute_p_value_difference": 0.0
+  }
+}

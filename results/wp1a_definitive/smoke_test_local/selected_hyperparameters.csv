@@ -1,0 +1,2 @@
+model,global_rank,candidate,params,training_seconds,model_size_bytes,accuracy,balanced_accuracy,f1_macro,f1_weighted,mcc,inference_seconds,inference_ms_per_sample
+decision_tree,1,1,"{""max_depth"": 12, ""min_samples_leaf"": 5}",0.4087194130000853,8690,0.42323809523809525,0.42323809523809525,0.4198102250864365,0.41981022508643645,0.4405921332077517,0.0008130600000413324,7.743428571822213e-05

@@ -1,0 +1,56 @@
+{
+  "stage": 26,
+  "system": "EERS",
+  "status": "PASS",
+  "generated_utc": "2026-07-31T20:18:57.254801+00:00",
+  "journal_profile": "Expert Systems with Applications",
+  "paper_json": "/home/clarimar/Dropbox/aulas/ppgeiia/MEI0028/ProjetoA_TEP/results/eers_outputs/paper_v0_2.json",
+  "manuscript_title": "Fault Diagnosis in the Tennessee Eastman Process: A Detailed Class-Level Benchmark Analysis",
+  "overall_score": 77.3947,
+  "readiness_label": "Minor-to-moderate revision",
+  "editorial_recommendation": "Minor Revision",
+  "critical_problems": 1,
+  "major_problems": 7,
+  "minor_problems": 4,
+  "category_scores": {
+    "structure": {
+      "raw_obtained": 17.0,
+      "raw_possible": 19.0,
+      "normalized_score": 17.894736842105264,
+      "normalized_possible": 20.0,
+      "percentage": 89.47368421052632
+    },
+    "methodology": {
+      "raw_obtained": 23.5,
+      "raw_possible": 25.0,
+      "normalized_score": 23.5,
+      "normalized_possible": 25.0,
+      "percentage": 94.0
+    },
+    "statistics": {
+      "raw_obtained": 15.0,
+      "raw_possible": 20.0,
+      "normalized_score": 15.0,
+      "normalized_possible": 20.0,
+      "percentage": 75.0
+    },
+    "machine_learning": {
+      "raw_obtained": 15.5,
+      "raw_possible": 20.0,
+      "normalized_score": 15.5,
+      "normalized_possible": 20.0,
+      "percentage": 77.5
+    },
+    "reproducibility": {
+      "raw_obtained": 5.5,
+      "raw_possible": 15.0,
+      "normalized_score": 5.5,
+      "normalized_possible": 15.0,
+      "percentage": 36.666666666666664
+    }
+  },
+  "criteria_total": 47,
+  "criteria_passed": 35,
+  "criteria_partial": 1,
+  "criteria_failed": 11
+}

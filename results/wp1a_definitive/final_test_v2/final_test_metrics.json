@@ -1,0 +1,16 @@
+{
+  "accuracy": 0.6754150793650794,
+  "balanced_accuracy": 0.6754150793650794,
+  "f1_macro": 0.7200361819132615,
+  "f1_weighted": 0.7200361819132616,
+  "mcc": 0.6620844974284676,
+  "training_seconds": 170.34134557000016,
+  "inference_seconds": 56.57073472100001,
+  "inference_ms_per_sample": 0.00561217606359127,
+  "n_development_rows": 840000,
+  "n_test_rows": 10080000,
+  "n_train_runs_per_class": 40,
+  "n_validation_runs_per_class": 40,
+  "development_run_size": 500,
+  "test_run_size": 960
+}

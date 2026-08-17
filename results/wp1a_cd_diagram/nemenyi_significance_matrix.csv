@@ -1,0 +1,7 @@
+,hist_gradient_boosting,random_forest,extra_trees,decision_tree,logistic_regression,linear_svm
+hist_gradient_boosting,False,False,True,True,True,True
+random_forest,False,False,True,True,True,True
+extra_trees,True,True,False,True,True,True
+decision_tree,True,True,True,False,True,True
+logistic_regression,True,True,True,True,False,False
+linear_svm,True,True,True,True,False,False

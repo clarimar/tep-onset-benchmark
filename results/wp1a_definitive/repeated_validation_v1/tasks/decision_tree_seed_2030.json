@@ -1,0 +1,17 @@
+{
+  "model": "decision_tree",
+  "seed": 2030,
+  "candidate": 3,
+  "accuracy": 0.6689452380952381,
+  "balanced_accuracy": 0.6689452380952381,
+  "f1_macro": 0.6703576935324268,
+  "f1_weighted": 0.6703576935324269,
+  "mcc": 0.6524287721878177,
+  "training_seconds": 53.860413075000906,
+  "inference_seconds": 0.09333987100035301,
+  "inference_ms_per_sample": 0.0002222377880960786,
+  "model_size_bytes": 28990481,
+  "n_train_rows": 420000,
+  "n_validation_rows": 420000,
+  "test_accessed": false
+}

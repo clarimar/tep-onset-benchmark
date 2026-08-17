@@ -1,0 +1,4 @@
+split,file,size_mb,rows,columns,features,classes,missing_labels,sampled_rows
+train,/home/clarimar/Dropbox/aulas/ppgeiia/MEI0028/ProjetoA_TEP/data/processed/train.parquet,411.349,4200000,56,52,21,0,300000
+validation,/home/clarimar/Dropbox/aulas/ppgeiia/MEI0028/ProjetoA_TEP/data/processed/validation.parquet,125.521,1050000,56,52,21,0,300000
+test,/home/clarimar/Dropbox/aulas/ppgeiia/MEI0028/ProjetoA_TEP/data/processed/test.parquet,921.726,10080000,56,52,21,0,300000

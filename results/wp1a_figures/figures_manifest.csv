@@ -1,0 +1,9 @@
+figure
+01_trajectory_boxplot
+02_average_model_ranking
+03_pairwise_holm_heatmap
+04_class_level_performance
+05_validation_vs_test
+06_global_test_metrics
+07_training_time
+08_performance_vs_cost

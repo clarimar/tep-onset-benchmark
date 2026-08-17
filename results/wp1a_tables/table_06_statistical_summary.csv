@@ -1,0 +1,16 @@
+item,value
+Analysis status,PASS
+Primary split,test
+Primary metric,trajectory_accuracy
+Number of models,6
+Common trajectories,10500
+Best model by average rank,HistGradientBoosting
+Best average rank,2.706857142857143
+Friedman applicable,True
+Friedman statistic,15455.653919591054
+Friedman p-value,0.0
+Friedman significant,True
+Kendall's W,0.29439340799221053
+Alpha,0.05
+Significant pairwise comparisons,15
+Total pairwise comparisons,15

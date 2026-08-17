@@ -1,0 +1,3 @@
+group_id,models,pretty_models,n_models,best_rank,worst_rank,rank_span
+1,hist_gradient_boosting | random_forest,HistGradientBoosting | Random Forest,2,2.706857142857143,2.758142857142857,0.05128571428571416
+2,logistic_regression | linear_svm,Logistic Regression | Linear SVM,2,4.492761904761905,4.499952380952381,0.0071904761904759695

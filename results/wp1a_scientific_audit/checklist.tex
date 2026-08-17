@@ -1,0 +1,54 @@
+\begin{longtable}{p{2.6cm}p{5.2cm}p{1.5cm}p{1.4cm}p{4.8cm}}
+\toprule
+Category & Criterion & Status & Score & Recommendation \\
+\midrule
+\endhead
+structure & Title present and informative & PASS & 2.00/2.00 & Use a specific title that identifies problem, method, and application domain. \\
+structure & Abstract present & PASS & 2.50/2.50 & Include a structured abstract covering context, objective, methods, results, and conclusion. \\
+structure & Abstract length and coverage & PARTIAL & 1.00/2.00 & Adjust abstract length and ensure it reports numerical findings and main contribution. \\
+structure & Keywords present & FAIL & 0.00/1.00 & Provide 4–7 specific keywords. \\
+structure & Introduction section present & PASS & 1.50/1.50 & Add an explicit Introduction section. \\
+structure & Methods section present & PASS & 1.50/1.50 & Add an explicit Methods section. \\
+structure & Results section present & PASS & 1.50/1.50 & Add an explicit Results section. \\
+structure & Discussion section present & PASS & 1.50/1.50 & Add an explicit Discussion section. \\
+structure & Conclusion section present & PASS & 1.50/1.50 & Add an explicit Conclusion section. \\
+structure & Figures have captions & PASS & 1.50/1.50 & Ensure every figure has a complete, standalone caption. \\
+structure & Tables have captions & PASS & 1.00/1.00 & Ensure every table has a complete caption and descriptive headings. \\
+structure & Cross-reference integrity & PASS & 1.50/1.50 & Resolve undefined references and duplicate labels. \\
+methodology & Problem formulation is explicit & PASS & 3.00/3.00 & State the research problem and objective explicitly at the end of the introduction. \\
+methodology & Dataset described & PASS & 3.00/3.00 & Describe dataset source, variables, classes, sample size, and licensing/access. \\
+methodology & Train/validation/test split described & PASS & 3.00/3.00 & Describe the exact split strategy and ensure run-level independence. \\
+methodology & Preprocessing described & PASS & 2.50/2.50 & Describe all preprocessing steps and identify which data partition was used to fit them. \\
+methodology & Model set described & PASS & 2.50/2.50 & List all models, their roles, and implementation details. \\
+methodology & Hyperparameters reported & PASS & 3.00/3.00 & Report the final hyperparameters and tuning procedure for every model. \\
+methodology & Computational procedure reproducible & PASS & 2.50/2.50 & Report software versions, random seed, and execution environment. \\
+methodology & Evaluation metrics defined & PASS & 2.50/2.50 & Define all metrics and justify the primary metric. \\
+methodology & Experimental fairness discussed & FAIL & 0.00/1.50 & Explain how identical splits and preprocessing were used for all models. \\
+methodology & Limitations of design acknowledged & PASS & 1.50/1.50 & Add a dedicated limitations or threats-to-validity subsection. \\
+statistics & Primary metric reported & PASS & 3.00/3.00 & Explicitly identify and justify the primary metric. \\
+statistics & Multiple metrics reported & PASS & 2.50/2.50 & Report complementary metrics such as accuracy, balanced accuracy, MCC, precision, and recall. \\
+statistics & Dispersion reported & PASS & 2.50/2.50 & Report uncertainty or dispersion for repeated experiments or class-level results. \\
+statistics & Confidence intervals reported & PASS & 2.50/2.50 & Provide confidence intervals for key performance estimates. \\
+statistics & Statistical significance testing reported & FAIL & 0.00/3.00 & Report the Friedman test and corrected pairwise comparisons already generated in WP1A. \\
+statistics & Effect size or practical significance discussed & FAIL & 0.00/2.00 & Discuss magnitude and practical relevance, not only statistical significance. \\
+statistics & Class-level analysis reported & PASS & 2.50/2.50 & Retain per-class evaluation and discuss difficult faults. \\
+statistics & Sample size or support reported & PASS & 2.00/2.00 & Report sample counts and trajectory counts for each partition. \\
+machine\_learning & At least three baseline models & PASS & 3.00/3.00 & Include diverse linear, tree-based, and ensemble baselines. \\
+machine\_learning & Strong nonlinear baseline included & PASS & 2.50/2.50 & Include at least one strong tree-based ensemble baseline. \\
+machine\_learning & Linear baseline included & PASS & 2.00/2.00 & Include a linear baseline for interpretability and difficulty calibration. \\
+machine\_learning & Model selection procedure described & FAIL & 0.00/2.50 & Describe how validation data guided model selection without test leakage. \\
+machine\_learning & Class imbalance considered & FAIL & 0.00/2.00 & Discuss class balance, sampling, and metric choice. \\
+machine\_learning & Confusion matrix or error analysis present & PASS & 2.50/2.50 & Include and discuss confusion matrices and dominant error modes. \\
+machine\_learning & Independent test evaluation reported & PASS & 2.50/2.50 & Clearly distinguish validation results from final held-out test results. \\
+machine\_learning & No data leakage risk acknowledged & PASS & 1.50/1.50 & Explicitly state that runs/trajectories were separated across partitions. \\
+machine\_learning & Interpretation beyond ranking & PASS & 1.50/1.50 & Explain why models differ and which process conditions drive performance. \\
+reproducibility & Dataset source identified & PASS & 2.50/2.50 & Provide a persistent dataset URL or DOI and access date. \\
+reproducibility & Code availability stated & FAIL & 0.00/2.50 & Add a Code Availability Statement with repository URL and release tag. \\
+reproducibility & Data availability statement present & FAIL & 0.00/2.00 & Add a formal Data Availability Statement. \\
+reproducibility & Software versions reported & FAIL & 0.00/2.00 & Report Python and library versions. \\
+reproducibility & Hardware reported & PASS & 1.50/1.50 & Report CPU, RAM, and GPU used for training and inference. \\
+reproducibility & Random seed reported & FAIL & 0.00/1.50 & Report all random seeds and deterministic settings. \\
+reproducibility & Hyperparameters reproducible & PASS & 1.50/1.50 & Provide the final hyperparameter table or configuration file. \\
+reproducibility & Environment or requirements available & FAIL & 0.00/1.50 & Archive pyproject.toml or requirements lock file with the code. \\
+\bottomrule
+\end{longtable}

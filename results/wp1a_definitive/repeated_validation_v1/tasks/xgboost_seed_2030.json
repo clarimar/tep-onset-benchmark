@@ -1,0 +1,17 @@
+{
+  "model": "xgboost",
+  "seed": 2030,
+  "candidate": 1,
+  "accuracy": 0.7518976190476191,
+  "balanced_accuracy": 0.751897619047619,
+  "f1_macro": 0.7659364398200234,
+  "f1_weighted": 0.7659364398200234,
+  "mcc": 0.7400608530167866,
+  "training_seconds": 128.45469489599964,
+  "inference_seconds": 2.414661274999162,
+  "inference_ms_per_sample": 0.005749193511902766,
+  "model_size_bytes": 18855909,
+  "n_train_rows": 420000,
+  "n_validation_rows": 420000,
+  "test_accessed": false
+}

@@ -1,0 +1,18 @@
+{
+  "status": "PASS",
+  "generated_at_utc": "2026-07-31T21:50:31.921776+00:00",
+  "input_file": "/home/clarimar/Dropbox/aulas/ppgeiia/MEI0028/ProjetoA_TEP/results/wp1a_tables/table_04_class_level_performance.csv",
+  "primary_metric": "f1_score",
+  "n_models": 6,
+  "n_faults": 21,
+  "hardest_fault": "0",
+  "hardest_fault_mean": 0.15695,
+  "easiest_fault": "7",
+  "easiest_fault_mean": 0.8365333333333332,
+  "most_variable_fault": "14",
+  "most_variable_fault_std": 0.3649934232284193,
+  "warnings": [
+    "Wide input interpreted as f1_score; model columns=['HistGradientBoosting', 'Random Forest', 'Extra Trees', 'Decision Tree', 'Logistic Regression', 'Linear SVM']",
+    "Validated the six expected WP1A classifiers."
+  ]
+}

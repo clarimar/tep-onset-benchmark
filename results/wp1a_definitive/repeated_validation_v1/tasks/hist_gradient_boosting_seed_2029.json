@@ -1,0 +1,17 @@
+{
+  "model": "hist_gradient_boosting",
+  "seed": 2029,
+  "candidate": 2,
+  "accuracy": 0.7455357142857143,
+  "balanced_accuracy": 0.7455357142857143,
+  "f1_macro": 0.7595894228807353,
+  "f1_weighted": 0.7595894228807353,
+  "mcc": 0.733465452376331,
+  "training_seconds": 43.46014154800105,
+  "inference_seconds": 7.874016110001321,
+  "inference_ms_per_sample": 0.01874765740476505,
+  "model_size_bytes": 13250368,
+  "n_train_rows": 420000,
+  "n_validation_rows": 420000,
+  "test_accessed": false
+}

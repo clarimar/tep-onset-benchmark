@@ -1,0 +1,10 @@
+{
+  "applicable": true,
+  "statistic": 15455.653919591054,
+  "p_value": 0.0,
+  "alpha": 0.05,
+  "significant": true,
+  "kendalls_w": 0.29439340799221053,
+  "n_models": 6,
+  "n_trajectories": 10500
+}

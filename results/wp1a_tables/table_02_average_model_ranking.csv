@@ -1,0 +1,7 @@
+overall_position,model,average_rank,rank_std,first_place_count,first_place_rate,mean_metric,median_metric
+1,HistGradientBoosting,2.7069,1.1942,1459,0.139,0.6715,0.75
+2,Random Forest,2.7581,1.0276,665,0.0633,0.6654,0.7391
+3,Extra Trees,2.8399,1.0671,741,0.0706,0.6596,0.7391
+4,Decision Tree,3.7024,1.2418,422,0.0402,0.6099,0.68
+5,Logistic Regression,4.4928,1.3047,138,0.0131,0.4246,0.375
+6,Linear SVM,4.5,1.3654,202,0.0192,0.4202,0.3478

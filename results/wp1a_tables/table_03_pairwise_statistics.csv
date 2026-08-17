@@ -1,0 +1,16 @@
+model_a,model_b,n_pairs,mean_a,mean_b,mean_difference_a_minus_b,median_difference_a_minus_b,wilcoxon_statistic,p_value_raw,p_value_holm,significant_holm,rank_biserial_a_vs_b,effect_magnitude,better_model_by_mean
+Decision Tree,Extra Trees,10500,0.6099,0.6596,-0.0497,0.0,9327721.0,0.0,0.0,True,-0.657,large,Extra Trees
+Decision Tree,HistGradientBoosting,10500,0.6099,0.6715,-0.0616,-0.0435,7770764.5,0.0,0.0,True,-0.7335,large,HistGradientBoosting
+Decision Tree,Linear SVM,10500,0.6099,0.4202,0.1897,0.087,8626199.0,0.0,0.0,True,0.7671,large,Decision Tree
+Decision Tree,Logistic Regression,10500,0.6099,0.4246,0.1853,0.0833,8139513.5,0.0,0.0,True,0.7803,large,Decision Tree
+Decision Tree,Random Forest,10500,0.6099,0.6654,-0.0555,-0.0417,6977978.0,0.0,0.0,True,-0.751,large,Random Forest
+Extra Trees,Linear SVM,10500,0.6596,0.4202,0.2394,0.1304,4111272.0,0.0,0.0,True,0.9198,large,Extra Trees
+Extra Trees,Logistic Regression,10500,0.6596,0.4246,0.235,0.12,3410725.0,0.0,0.0,True,0.9337,large,Extra Trees
+HistGradientBoosting,Linear SVM,10500,0.6715,0.4202,0.2512,0.1538,4050681.0,0.0,0.0,True,0.9242,large,HistGradientBoosting
+HistGradientBoosting,Logistic Regression,10500,0.6715,0.4246,0.2469,0.1364,3401354.5,0.0,0.0,True,0.9436,large,HistGradientBoosting
+Linear SVM,Random Forest,10500,0.4202,0.6654,-0.2452,-0.1429,3939681.5,0.0,0.0,True,-0.9269,large,Random Forest
+Logistic Regression,Random Forest,10500,0.4246,0.6654,-0.2408,-0.1364,3531008.5,0.0,0.0,True,-0.9365,large,Random Forest
+Extra Trees,HistGradientBoosting,10500,0.6596,0.6715,-0.0118,0.0,17862721.0,0.0,0.0,True,-0.195,small,HistGradientBoosting
+Extra Trees,Random Forest,10500,0.6596,0.6654,-0.0058,0.0,15426177.0,0.0,0.0,True,-0.148,small,Random Forest
+HistGradientBoosting,Random Forest,10500,0.6715,0.6654,0.0061,0.0,18021929.5,0.0,0.0,True,0.1248,small,HistGradientBoosting
+Linear SVM,Logistic Regression,10500,0.4202,0.4246,-0.0044,0.0,21199389.5,0.0,0.0,True,-0.0599,negligible,Logistic Regression

@@ -1,0 +1,17 @@
+{
+  "model": "linear_svm",
+  "seed": 2027,
+  "candidate": 3,
+  "accuracy": 0.4713428571428571,
+  "balanced_accuracy": 0.4713428571428572,
+  "f1_macro": 0.4515445935123048,
+  "f1_weighted": 0.4515445935123048,
+  "mcc": 0.44625496339765497,
+  "training_seconds": 4.062343884000256,
+  "inference_seconds": 0.07312737400025071,
+  "inference_ms_per_sample": 0.00017411279523869217,
+  "model_size_bytes": 5765,
+  "n_train_rows": 420000,
+  "n_validation_rows": 420000,
+  "test_accessed": false
+}

@@ -1,0 +1,19 @@
+\begin{table}[htbp]
+\centering
+\caption{Comparison between validation and test trajectory performance.}
+\label{tab:table_05_validation_test_comparison}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lrrrrrrrrrr}
+\toprule
+model & n\_common\_trajectories & validation\_mean & test\_mean & mean\_difference\_validation\_minus\_test & wilcoxon\_statistic & p\_value\_raw & p\_value\_holm & significant\_holm & rank\_biserial\_validation\_vs\_test & effect\_magnitude \\
+\midrule
+Decision Tree & 2100 & 0.6794 & 0.6090 & 0.0704 & 483751.5000 & 0.0000 & 0.0000 & Yes & 0.5627 & large \\
+Extra Trees & 2100 & 0.7277 & 0.6581 & 0.0696 & 481737.5000 & 0.0000 & 0.0000 & Yes & 0.5641 & large \\
+HistGradientBoosting & 2100 & 0.7543 & 0.6698 & 0.0845 & 370464.0000 & 0.0000 & 0.0000 & Yes & 0.6655 & large \\
+Linear SVM & 2100 & 0.4722 & 0.4204 & 0.0518 & 609510.0000 & 0.0000 & 0.0000 & Yes & 0.4505 & medium \\
+Logistic Regression & 2100 & 0.4741 & 0.4242 & 0.0498 & 624337.5000 & 0.0000 & 0.0000 & Yes & 0.4366 & medium \\
+Random Forest & 2100 & 0.7365 & 0.6644 & 0.0721 & 475272.0000 & 0.0000 & 0.0000 & Yes & 0.5700 & large \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}

@@ -1,0 +1,48 @@
+category,criterion,weight,status,score,severity,evidence,recommendation
+structure,Title present and informative,2.0,PASS,2.0,none,Title: Fault Diagnosis in the Tennessee Eastman Process: A Detailed Class-Level Benchmark Analysis,"Use a specific title that identifies problem, method, and application domain."
+structure,Abstract present,2.5,PASS,2.5,none,Abstract words: 102,"Include a structured abstract covering context, objective, methods, results, and conclusion."
+structure,Abstract length and coverage,2.0,PARTIAL,1.0,major,Abstract word count: 102,Adjust abstract length and ensure it reports numerical findings and main contribution.
+structure,Keywords present,1.0,FAIL,0.0,minor,Keywords detected: 0,Provide 4–7 specific keywords.
+structure,Introduction section present,1.5,PASS,1.5,none,"Detected section titles: ['introduction', 'methods', 'experimental benchmark and classification task', 'performance assessment', 'results', 'discussion', 'implications and limitations', 'visual analysis', 'conclusion']",Add an explicit Introduction section.
+structure,Methods section present,1.5,PASS,1.5,none,"Detected section titles: ['introduction', 'methods', 'experimental benchmark and classification task', 'performance assessment', 'results', 'discussion', 'implications and limitations', 'visual analysis', 'conclusion']",Add an explicit Methods section.
+structure,Results section present,1.5,PASS,1.5,none,"Detected section titles: ['introduction', 'methods', 'experimental benchmark and classification task', 'performance assessment', 'results', 'discussion', 'implications and limitations', 'visual analysis', 'conclusion']",Add an explicit Results section.
+structure,Discussion section present,1.5,PASS,1.5,none,"Detected section titles: ['introduction', 'methods', 'experimental benchmark and classification task', 'performance assessment', 'results', 'discussion', 'implications and limitations', 'visual analysis', 'conclusion']",Add an explicit Discussion section.
+structure,Conclusion section present,1.5,PASS,1.5,none,"Detected section titles: ['introduction', 'methods', 'experimental benchmark and classification task', 'performance assessment', 'results', 'discussion', 'implications and limitations', 'visual analysis', 'conclusion']",Add an explicit Conclusion section.
+structure,Figures have captions,1.5,PASS,1.5,none,Figures with captions: 5/5,"Ensure every figure has a complete, standalone caption."
+structure,Tables have captions,1.0,PASS,1.0,none,Tables with captions: 1/1,Ensure every table has a complete caption and descriptive headings.
+structure,Cross-reference integrity,1.5,PASS,1.5,none,Undefined references: 0; duplicate labels: 0,Resolve undefined references and duplicate labels.
+methodology,Problem formulation is explicit,3.0,PASS,3.0,none,Problem-related terms were searched in the full manuscript.,State the research problem and objective explicitly at the end of the introduction.
+methodology,Dataset described,3.0,PASS,3.0,none,Dataset and sample terminology detected.,"Describe dataset source, variables, classes, sample size, and licensing/access."
+methodology,Train/validation/test split described,3.0,PASS,3.0,none,Split-related terminology detected.,Describe the exact split strategy and ensure run-level independence.
+methodology,Preprocessing described,2.5,PASS,2.5,none,Preprocessing terminology detected.,Describe all preprocessing steps and identify which data partition was used to fit them.
+methodology,Model set described,2.5,PASS,2.5,none,Algorithms detected: 4,"List all models, their roles, and implementation details."
+methodology,Hyperparameters reported,3.0,PASS,3.0,none,Hyperparameter-related terms searched.,Report the final hyperparameters and tuning procedure for every model.
+methodology,Computational procedure reproducible,2.5,PASS,2.5,none,Reproducibility terminology detected.,"Report software versions, random seed, and execution environment."
+methodology,Evaluation metrics defined,2.5,PASS,2.5,none,"Metrics detected: ['accuracy', 'precision', 'recall', 'sensitivity', 'F1-score']",Define all metrics and justify the primary metric.
+methodology,Experimental fairness discussed,1.5,FAIL,0.0,minor,Fair-comparison language searched.,Explain how identical splits and preprocessing were used for all models.
+methodology,Limitations of design acknowledged,1.5,PASS,1.5,none,Limitation-related terms detected.,Add a dedicated limitations or threats-to-validity subsection.
+statistics,Primary metric reported,3.0,PASS,3.0,none,Primary metric terminology detected.,Explicitly identify and justify the primary metric.
+statistics,Multiple metrics reported,2.5,PASS,2.5,none,Metrics detected: 5,"Report complementary metrics such as accuracy, balanced accuracy, MCC, precision, and recall."
+statistics,Dispersion reported,2.5,PASS,2.5,none,Dispersion terminology detected.,Report uncertainty or dispersion for repeated experiments or class-level results.
+statistics,Confidence intervals reported,2.5,PASS,2.5,none,Confidence-interval terminology searched.,Provide confidence intervals for key performance estimates.
+statistics,Statistical significance testing reported,3.0,FAIL,0.0,critical,Statistical-test terminology searched.,Report the Friedman test and corrected pairwise comparisons already generated in WP1A.
+statistics,Effect size or practical significance discussed,2.0,FAIL,0.0,major,Effect-size terminology searched.,"Discuss magnitude and practical relevance, not only statistical significance."
+statistics,Class-level analysis reported,2.5,PASS,2.5,none,Class-level terminology detected.,Retain per-class evaluation and discuss difficult faults.
+statistics,Sample size or support reported,2.0,PASS,2.0,none,Sample/support terminology detected.,Report sample counts and trajectory counts for each partition.
+machine_learning,At least three baseline models,3.0,PASS,3.0,none,"Algorithms detected: ['Logistic Regression', 'Random Forest', 'SVM', 'Decision Tree']","Include diverse linear, tree-based, and ensemble baselines."
+machine_learning,Strong nonlinear baseline included,2.5,PASS,2.5,none,Tree ensemble terminology searched.,Include at least one strong tree-based ensemble baseline.
+machine_learning,Linear baseline included,2.0,PASS,2.0,none,Linear baseline terminology searched.,Include a linear baseline for interpretability and difficulty calibration.
+machine_learning,Model selection procedure described,2.5,FAIL,0.0,major,Model-selection terminology searched.,Describe how validation data guided model selection without test leakage.
+machine_learning,Class imbalance considered,2.0,FAIL,0.0,major,Class-imbalance terminology searched.,"Discuss class balance, sampling, and metric choice."
+machine_learning,Confusion matrix or error analysis present,2.5,PASS,2.5,none,Error-analysis terminology searched.,Include and discuss confusion matrices and dominant error modes.
+machine_learning,Independent test evaluation reported,2.5,PASS,2.5,none,Independent-test terminology searched.,Clearly distinguish validation results from final held-out test results.
+machine_learning,No data leakage risk acknowledged,1.5,PASS,1.5,none,Leakage-control terminology searched.,Explicitly state that runs/trajectories were separated across partitions.
+machine_learning,Interpretation beyond ranking,1.5,PASS,1.5,none,Interpretive terminology searched.,Explain why models differ and which process conditions drive performance.
+reproducibility,Dataset source identified,2.5,PASS,2.5,none,Dataset source terminology searched.,Provide a persistent dataset URL or DOI and access date.
+reproducibility,Code availability stated,2.5,FAIL,0.0,major,Code-availability terminology searched.,Add a Code Availability Statement with repository URL and release tag.
+reproducibility,Data availability statement present,2.0,FAIL,0.0,major,Data-availability terminology searched.,Add a formal Data Availability Statement.
+reproducibility,Software versions reported,2.0,FAIL,0.0,major,Software/version terminology searched.,Report Python and library versions.
+reproducibility,Hardware reported,1.5,PASS,1.5,none,Hardware terminology searched.,"Report CPU, RAM, and GPU used for training and inference."
+reproducibility,Random seed reported,1.5,FAIL,0.0,minor,Random-seed terminology searched.,Report all random seeds and deterministic settings.
+reproducibility,Hyperparameters reproducible,1.5,PASS,1.5,none,Hyperparameter terminology searched.,Provide the final hyperparameter table or configuration file.
+reproducibility,Environment or requirements available,1.5,FAIL,0.0,minor,Environment-file terminology searched.,Archive pyproject.toml or requirements lock file with the code.

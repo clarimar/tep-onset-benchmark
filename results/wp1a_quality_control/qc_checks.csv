@@ -1,0 +1,46 @@
+check,status,severity,split,value,threshold,message
+schema_columns,PASS,critical,validation,56,56,Esquema idêntico ao treino.
+schema_columns,PASS,critical,test,56,56,Esquema idêntico ao treino.
+non_empty_split,PASS,critical,train,4200000,> 0,Partição contém observações.
+missing_labels,PASS,critical,train,0,0,Nenhum rótulo ausente.
+number_of_classes,PASS,warning,train,21,21,Número de classes conforme o esperado.
+missing_feature_values,PASS,critical,train,0,0,Nenhum valor ausente nos atributos amostrados.
+infinite_feature_values,PASS,critical,train,0,0,Nenhum valor infinito nos atributos amostrados.
+constant_features,PASS,warning,train,0,0,Nenhuma variável constante.
+exact_duplicates_sample,PASS,warning,train,0 (0.000000%),0,Nenhuma duplicata exata na amostra.
+non_empty_split,PASS,critical,validation,1050000,> 0,Partição contém observações.
+missing_labels,PASS,critical,validation,0,0,Nenhum rótulo ausente.
+number_of_classes,PASS,warning,validation,21,21,Número de classes conforme o esperado.
+missing_feature_values,PASS,critical,validation,0,0,Nenhum valor ausente nos atributos amostrados.
+infinite_feature_values,PASS,critical,validation,0,0,Nenhum valor infinito nos atributos amostrados.
+constant_features,PASS,warning,validation,0,0,Nenhuma variável constante.
+exact_duplicates_sample,PASS,warning,validation,0 (0.000000%),0,Nenhuma duplicata exata na amostra.
+non_empty_split,PASS,critical,test,10080000,> 0,Partição contém observações.
+missing_labels,PASS,critical,test,0,0,Nenhum rótulo ausente.
+number_of_classes,PASS,warning,test,21,21,Número de classes conforme o esperado.
+missing_feature_values,PASS,critical,test,0,0,Nenhum valor ausente nos atributos amostrados.
+infinite_feature_values,PASS,critical,test,0,0,Nenhum valor infinito nos atributos amostrados.
+constant_features,PASS,warning,test,0,0,Nenhuma variável constante.
+exact_duplicates_sample,PASS,warning,test,0 (0.000000%),0,Nenhuma duplicata exata na amostra.
+trajectory_original_order,PASS,warning,train,0,0,Todas as trajetórias estão ordenadas no arquivo.
+trajectory_duplicate_time_points,PASS,critical,train,0,0,"Não há pares duplicados de classe, execução e tempo."
+trajectory_missing_time,PASS,critical,train,0,0,Não há valores temporais ausentes.
+trajectory_gaps,PASS,warning,train,0,0,Não foram detectadas lacunas temporais.
+trajectory_length_summary,PASS,info,train,"{""runs"": 8400, ""min"": 500, ""median"": 500.0, ""mean"": 500.0, ""max"": 500}",descriptive,Resumo descritivo do comprimento das trajetórias.
+trajectory_original_order,PASS,warning,validation,0,0,Todas as trajetórias estão ordenadas no arquivo.
+trajectory_duplicate_time_points,PASS,critical,validation,0,0,"Não há pares duplicados de classe, execução e tempo."
+trajectory_missing_time,PASS,critical,validation,0,0,Não há valores temporais ausentes.
+trajectory_gaps,PASS,warning,validation,0,0,Não foram detectadas lacunas temporais.
+trajectory_length_summary,PASS,info,validation,"{""runs"": 2100, ""min"": 500, ""median"": 500.0, ""mean"": 500.0, ""max"": 500}",descriptive,Resumo descritivo do comprimento das trajetórias.
+trajectory_original_order,PASS,warning,test,0,0,Todas as trajetórias estão ordenadas no arquivo.
+trajectory_duplicate_time_points,PASS,critical,test,0,0,"Não há pares duplicados de classe, execução e tempo."
+trajectory_missing_time,PASS,critical,test,0,0,Não há valores temporais ausentes.
+trajectory_gaps,PASS,warning,test,0,0,Não foram detectadas lacunas temporais.
+trajectory_length_summary,PASS,info,test,"{""runs"": 10500, ""min"": 960, ""median"": 960.0, ""mean"": 960.0, ""max"": 960}",descriptive,Resumo descritivo do comprimento das trajetórias.
+run_id_overlap,PASS,info,train x validation,491,0,Há números de execução repetidos entre as partições. No TEP isso é esperado porque simulationRun é um identificador local e pode ser reiniciado. A repetição foi registrada apenas como informação contextual.
+run_id_overlap,PASS,info,train x test,500,0,Há números de execução repetidos entre as partições. No TEP isso é esperado porque simulationRun é um identificador local e pode ser reiniciado. A repetição foi registrada apenas como informação contextual.
+run_id_overlap,PASS,info,validation x test,491,0,Há números de execução repetidos entre as partições. No TEP isso é esperado porque simulationRun é um identificador local e pode ser reiniciado. A repetição foi registrada apenas como informação contextual.
+row_hash_overlap_sample,PASS,warning,train x validation,0,0,Nenhuma linha idêntica encontrada nas amostras cruzadas.
+row_hash_overlap_sample,PASS,warning,train x test,0,0,Nenhuma linha idêntica encontrada nas amostras cruzadas.
+row_hash_overlap_sample,PASS,warning,validation x test,0,0,Nenhuma linha idêntica encontrada nas amostras cruzadas.
+training_standardization_sample,PASS,warning,train,0,0,As variáveis de treino parecem padronizadas.

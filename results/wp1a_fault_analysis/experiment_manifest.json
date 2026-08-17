@@ -1,0 +1,20 @@
+{
+  "script": "20_wp1_fault_analysis_v1_2.py",
+  "python": "3.12.13 (main, Jun 23 2026, 15:18:55) [Clang 22.1.3 ]",
+  "platform": "Linux-7.0.0-28-generic-x86_64-with-glibc2.43",
+  "pandas": "3.0.5",
+  "numpy": "2.5.1",
+  "matplotlib": "3.11.1",
+  "arguments": {
+    "input_file": "results/wp1a_tables/table_04_class_level_performance.csv",
+    "results_root": "results",
+    "output_dir": "results/wp1a_fault_analysis",
+    "primary_metric": "f1_score",
+    "exclude_faults": [],
+    "top_k": 5,
+    "dpi": 300,
+    "format": "all",
+    "force": true,
+    "verbose": false
+  }
+}

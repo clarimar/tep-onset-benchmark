@@ -1,0 +1,21 @@
+\begin{landscape}
+\begin{table}[htbp]
+\centering
+\caption{Global predictive performance of the classical models on the test set.}
+\label{tab:table_01_global_test_performance}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lrrrrrrrrrrrrrrrr}
+\toprule
+position & model & accuracy & balanced\_accuracy & precision\_macro & recall\_macro & f1\_macro & f1\_weighted & mcc & cohen\_kappa & log\_loss & training\_time\_seconds & inference\_time\_seconds & inference\_ms\_per\_sample & overall\_position & average\_rank & first\_place\_rate \\
+\midrule
+1 & HistGradientBoosting & 0.6702 & 0.6702 & 0.7746 & 0.6702 & 0.7128 & 0.7128 & 0.6561 & 0.6537 & 1.2739 & 14.8909 & 1.5801 & 0.0075 & 1 & 2.7069 & 0.1390 \\
+2 & Random Forest & 0.6641 & 0.6641 & 0.7704 & 0.6641 & 0.7081 & 0.7081 & 0.6492 & 0.6473 & 1.8021 & 100.7377 & 3.2537 & 0.0155 & 2 & 2.7581 & 0.0633 \\
+3 & Extra Trees & 0.6585 & 0.6585 & 0.7504 & 0.6585 & 0.6965 & 0.6965 & 0.6432 & 0.6415 & 1.6204 & 51.2751 & 4.0496 & 0.0193 & 3 & 2.8399 & 0.0706 \\
+4 & Decision Tree & 0.6086 & 0.6086 & 0.6632 & 0.6086 & 0.6330 & 0.6330 & 0.5896 & 0.5890 & 14.0360 & 53.7633 & 0.0599 & 3.00e-04 & 4 & 3.7024 & 0.0402 \\
+5 & Logistic Regression & 0.4237 & 0.4237 & 0.4427 & 0.4237 & 0.4283 & 0.4283 & 0.3961 & 0.3949 & 1.9296 & 67.8947 & 0.0284 & 1.00e-04 & 5 & 4.4928 & 0.0131 \\
+6 & Linear SVM & 0.4193 & 0.4193 & 0.4372 & 0.4193 & 0.4207 & 0.4207 & 0.3919 & 0.3903 & -- & 3.8804 & 0.0291 & 1.00e-04 & 6 & 4.5000 & 0.0192 \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+\end{landscape}

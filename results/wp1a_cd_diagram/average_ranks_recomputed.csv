@@ -1,0 +1,7 @@
+position,model,pretty_model,average_rank
+1,hist_gradient_boosting,HistGradientBoosting,2.706857142857143
+2,random_forest,Random Forest,2.758142857142857
+3,extra_trees,Extra Trees,2.839857142857143
+4,decision_tree,Decision Tree,3.7024285714285714
+5,logistic_regression,Logistic Regression,4.492761904761905
+6,linear_svm,Linear SVM,4.499952380952381
