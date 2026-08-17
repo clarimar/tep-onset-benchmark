@@ -26,3 +26,8 @@ article/*.aux
 article/*.log
 article/*.out
 article/*.synctex.gz
+
+# copias de trabalho e arquivos que nao pertencem ao repositorio
+article/main_revised.tex
+article/*.bak
+*.zip
