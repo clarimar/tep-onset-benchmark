@@ -16,3 +16,7 @@ __pycache__/
 *.bbl
 *.blg
 *.synctex.gz
+
+# Relatório de lacunas de outro manuscrito (perfil ESWA, random_state=42,
+# lista de modelos com ExtraTrees e sem XGBoost). Não se aplica a este artigo.
+results/wp1a_gap_analysis/

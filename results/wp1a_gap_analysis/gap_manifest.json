@@ -1,8 +1,0 @@
-{
-  "script": "27_wp1_gap_analysis.py",
-  "version": "1.0.0",
-  "generated_utc": "2026-07-31T20:29:23.687939+00:00",
-  "input": "/home/clarimar/Dropbox/aulas/ppgeiia/MEI0028/ProjetoA_TEP/results/eers_outputs/paper_v0_2.json",
-  "output_dir": "/home/clarimar/Dropbox/aulas/ppgeiia/MEI0028/ProjetoA_TEP/results/wp1a_gap_analysis",
-  "journal_profile": "Expert Systems with Applications"
-}
