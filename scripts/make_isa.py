@@ -102,14 +102,8 @@ review \& editing, Supervision, Project administration.""",
 "declarations + CRediT")
 
 # ---- survey table: too wide for one column at 12 pt -----------------------
-sub(r"""\label{tab:survey}
-\small
-\begin{tabular}{lllccl}""",
-r"""\label{tab:survey}
-\footnotesize
-\setlength{\tabcolsep}{3.5pt}
-\begin{tabular}{lllccl}""",
-"survey table fits one column")
+# tabela do levantamento: \resizebox no main.tex ja garante o ajuste
+
 
 # ---- anonymize the repository ---------------------------------------------
 sub(r"""\TBD{repository URL} and archived under \TBD{Zenodo DOI}.""",
