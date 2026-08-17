@@ -267,10 +267,11 @@ as complementary evidence.
 The analysis reported in this paper is only consequential if the treatment of
 the onset window varies, or goes unstated, across published work on the same
 benchmark. We therefore examined the data-description and experimental-protocol
-sections of representative observation-level studies, recording for each one
-the dataset variant, the unit of partitioning, and whether the handling of the
-pre-onset segment is stated explicitly. Table~\ref{tab:survey} summarizes the
-outcome.
+sections of observation-level studies for which the full text was available,
+recording the dataset variant, the stated treatment of the pre-onset segment,
+and the number of test samples scored per run. The purpose is illustrative
+rather than exhaustive: two cases suffice to establish that the convention is
+not uniform, and Table~\ref{tab:survey} reports them.
 
 The question applies to both distributions of the benchmark. In the original
 data of Downs and Vogel as distributed by Chiang et al.
@@ -285,47 +286,57 @@ either version.
 
 \begin{table*}[t]
 \centering
-\caption{Reported experimental protocol in representative observation-level
-studies on the Tennessee Eastman benchmark. ``Onset stated'' records whether
-the treatment of observations preceding fault injection is described
-explicitly.}
+\caption{Treatment of the pre-onset window in observation-level studies on the
+Tennessee Eastman benchmark. The column distinguishes studies that do not
+mention the injection instant from those that state it and nonetheless score
+the pre-onset segment against the fault label.}
 \label{tab:survey}
 \small
 \setlength{\tabcolsep}{4pt}
 \resizebox{\textwidth}{!}{%
-\begin{tabular}{lllccl}
+\begin{tabular}{lllll}
 \toprule
-Study & Methods & Dataset & Split unit & Onset stated & Metric\\
+Study & Methods & Dataset & Pre-onset handling & Test samples\\
 \midrule
-Yin et al. \cite{yin2012comparison}      & PCA, PLS, FDA, ICA & \TBD{} & \TBD{} & \TBD{} & \TBD{}\\
-Gao \& Hou \cite{gao2016svm}             & GS-PCA + SVM       & \TBD{} & \TBD{} & \TBD{} & \TBD{}\\
-Chadha \& Schwung \cite{chadha2017comparison} & DNN, CNN      & \TBD{} & \TBD{} & \TBD{} & \TBD{}\\
-Lomov et al. \cite{lomov2021temporal}    & LSTM, GRU, TCN     & \TBD{} & \TBD{} & \TBD{} & \TBD{}\\
-Agarwal et al. \cite{agarwal2022lstm}    & Hierarchical LSTM-SAE & original & simulation file & no & FDR, FAR\\
-Anitha et al. \cite{anitha2023imvoa}     & Hybrid DL          & \TBD{} & \TBD{} & \TBD{} & \TBD{}\\
+Sun et al. \cite{sun2020brnn}         & Bayesian RNN          & original & stated, retained & 960\\
+Agarwal et al. \cite{agarwal2022lstm} & Hierarchical LSTM-SAE & original & not mentioned    & 960\\
 \midrule
-This work & Six classical classifiers & expanded & complete run & yes, both & macro-F1, MCC\\
+This work & Six classical classifiers & expanded & stated, both protocols & 960 / 800\\
 \bottomrule
 \end{tabular}}
 \end{table*}
 
-One case illustrates the pattern and the stakes. Agarwal et al.
-\cite{agarwal2022lstm} describe their data as 1440 samples per class, of which
-the first 480 are used for calibration and the remaining 960 for testing, and
-identify the source distribution explicitly. The instant of fault injection is
-not mentioned anywhere in the data description or the experimental protocol, so
-all 960 test samples are scored against the fault label although the first 160
-precede injection. The consequence is not incidental to that study's argument:
-its stated objective is to improve the diagnosis of the incipient faults 3, 9
-and 15, to which end pseudo-random binary signals are actively injected into
-the plant. Under literal labeling, part of the difficulty that motivates such
-an intervention is contributed by observations in which no fault is yet
-present.
+The two cases differ in what their authors knew, and agree in what they
+scored. Agarwal et al. \cite{agarwal2022lstm} describe their data as 1440
+samples per class, of which the first 480 are used for calibration and the
+remaining 960 for testing, and identify the source distribution explicitly. The
+instant of fault injection is not mentioned anywhere in the data description or
+the experimental protocol. The consequence is not incidental to that study's
+argument: its stated objective is to improve the diagnosis of the incipient
+faults 3, 9 and 15, to which end pseudo-random binary signals are actively
+injected into the plant. Under literal labeling, part of the difficulty that
+motivates such an intervention is contributed by observations in which no fault
+is yet present.
 
-\TBD{Complete the remaining rows and summarize: how many of the examined
-studies state the treatment of the onset window, how many partition by run
-rather than by observation, and whether the reported figures are consequently
-comparable.}
+Sun et al. \cite{sun2020brnn} state the structure explicitly: for each faulty
+condition the simulator runs 160 samples in the normal state before the
+disturbance is introduced, after which it continues for 800 further samples.
+Their evaluation nonetheless uses all 960 samples. Awareness of the injection
+instant is thus not sufficient; what matters for comparability is whether the
+pre-onset segment is excluded from scoring, and neither study excludes it.
+
+Reported figures from studies that retain the pre-onset segment and from
+studies that discard it are therefore not commensurable, and the difference
+between the two conventions is 0.0854 in macro-F1 for a single frozen model
+(Section~\ref{sec:onseteffect}), larger than the margins that typically
+separate competing methods on this benchmark. We do not claim a systematic
+review here; the point is only that the convention varies, that it is seldom
+identified as a choice, and that it should be reported.
+
+\TBD{Optional: extend Table~\ref{tab:survey} with further studies as their full
+texts are consulted, in particular Yin et al., Lomov et al. and Chadha \&
+Schwung. Record for each the exact sentence describing the data, or its
+absence.}
 
 \section{Materials and Methods}
 
@@ -1259,6 +1270,12 @@ doi: 10.1016/j.jprocont.2012.06.009.
 \bibitem{demsar2006statistical}
 J. Dem\v{s}ar, ``Statistical comparisons of classifiers over multiple data
 sets,'' \emph{Journal of Machine Learning Research}, vol. 7, pp. 1--30, 2006.
+
+\bibitem{sun2020brnn}
+W. Sun, A. R. C. Paiva, P. Xu, A. Sundaram, and R. D. Braatz, ``Fault detection
+and identification using Bayesian recurrent neural networks,'' \emph{Computers
+\& Chemical Engineering}, vol. 141, art. 106991, 2020.
+doi: 10.1016/j.compchemeng.2020.106991.
 
 \bibitem{kapoor2023leakage}
 S. Kapoor and A. Narayanan, ``Leakage and the reproducibility crisis in
