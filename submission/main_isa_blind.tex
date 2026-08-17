@@ -1,9 +1,20 @@
-\documentclass[10pt,twocolumn,a4paper]{article}
+% =========================================================================
+% ISA Transactions -- BLINDED SUBMISSION
+% Single file, 12 pt Times Roman, max 30 pages, double-anonymized.
+% Author names, affiliations, acknowledgments and the identifying
+% repository URL are removed from this file. They belong in the separate
+% title page / cover letter.
+% =========================================================================
+\documentclass[12pt,a4paper]{article}
 
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage{lmodern}
-\usepackage[margin=1.8cm,columnsep=0.65cm]{geometry}
+\usepackage{mathptmx}          % Times Roman text and math
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{lineno}
+\linenumbers
 \usepackage{graphicx}
 \usepackage{booktabs}
 \usepackage{amsmath,amssymb}
@@ -13,7 +24,6 @@
 \usepackage{xcolor}
 \usepackage{url}
 \usepackage[hidelinks]{hyperref}
-\usepackage{balance}
 
 \graphicspath{{figures/}}
 \captionsetup{font=small,labelfont=bf}
@@ -34,13 +44,10 @@
 %       A Leakage-Controlled Benchmark of Classical Classifiers"
 
 
-\title{\Large\textbf{A Reproducible Benchmark of Classical Machine Learning Methods\\
-for Fault Diagnosis in the Tennessee Eastman Process}}
+\title{\textbf{Fault-Onset Labeling Bounds Reported Accuracy in the Tennessee
+Eastman Benchmark: A Leakage-Controlled Study of Six Classical Classifiers}}
 
-\author{Clarimar Jos\'e Coelho\\
-\small Scientific Computing Laboratory, School of Polytechnic and Arts\\
-\small Pontifical Catholic University of Goi\'as, Goi\^ania, Brazil\\
-\small ORCID: 0000-0002-5163-2986}
+\author{}
 \date{}
 
 \begin{document}
@@ -184,18 +191,6 @@ dynamic, nonstationary, multimodal, and autocorrelated
 \cite{yin2014review,ji2022review}. These properties motivate flexible nonlinear
 classifiers, but also demand careful validation.
 
-A substantial line of work addresses the serial correlation of process data
-directly. Dynamic PCA augments the data matrix with time-lagged variables to
-capture time-varying structure \cite{ku1995dpca}; canonical variate analysis
-models the dynamics explicitly and was compared against PCA and DPCA on the TEP
-simulator by Russell et al. \cite{russell2000cva}, later extended with kernel
-density estimation for nonlinear dynamics \cite{odiowei2010cva}. These methods
-are relevant here for a reason beyond their performance: they treat the
-temporal structure of a run as the object of analysis, whereas an
-observation-level classifier treats each row independently. The labeling
-question examined in Section~\ref{sec:onset} arises precisely at that
-boundary.
-
 \subsection{Classical machine learning for TEP diagnosis}
 
 Decision trees recursively partition the feature space into regions associated
@@ -216,39 +211,6 @@ complexity of nonlinear ensembles is justified. All implementations in this
 study were based on scikit-learn \cite{pedregosa2011sklearn}, except XGBoost,
 which used its reference implementation \cite{chen2016xgboost}.
 
-Deep architectures have been applied extensively to the same benchmark. Chadha
-and Schwung compared feedforward and convolutional networks for TEP fault
-detection \cite{chadha2017comparison}; hybrid designs combining support vector
-machines with latent-variable preprocessing \cite{gao2016svm}, hierarchical
-LSTM structures \cite{agarwal2022lstm}, and metaheuristically optimized deep
-models \cite{anitha2023imvoa} have all reported strong results. Most directly
-comparable to the present study, Lomov et al. \cite{lomov2021temporal}
-evaluated recurrent, attention-based and temporal convolutional architectures
-on the same expanded TEP dataset used here. The present work does not propose
-a competing architecture; it examines a property of the evaluation protocol
-that applies to all of them.
-
-\subsection{Evaluation protocols and leakage}
-
-Concern about evaluation protocol is not specific to process monitoring. In a
-survey across disciplines that have adopted machine learning, Kapoor and
-Narayanan identified leakage in seventeen fields, affecting at least 294
-publications and in several cases producing conclusions that did not survive
-correction \cite{kapoor2023leakage}. Their taxonomy distinguishes eight
-mechanisms, two of which bear directly on the present benchmark: temporal
-leakage, where information from the future informs a prediction about the past,
-and non-independence between training and evaluation samples, where records
-that share a common origin are distributed across partitions and treated as
-independent replicates.
-
-Both are latent in observation-level TEP classification. Consecutive samples
-within a simulation run are strongly autocorrelated, so a split performed at
-the observation level places near-duplicate records on both sides of the
-partition. The run-level protocol of Section~\ref{sec:split} is designed to
-avoid this. The labeling question analyzed in this paper is related but
-distinct: it concerns not how records are divided, but whether the label
-attached to a record describes the state of the plant at that instant.
-
 \subsection{Evaluation beyond accuracy}
 
 Accuracy can be misleading when performance varies substantially among classes.
@@ -260,44 +222,6 @@ matrices are indispensable because they reveal whether errors are diffuse or
 concentrated in specific class pairs. The present study therefore uses
 macro-F1 as the primary model-selection criterion and treats the other metrics
 as complementary evidence.
-
-\subsection{Reported treatment of the fault-onset window}
-\label{sec:survey}
-
-The analysis reported in this paper is only consequential if the treatment of
-the onset window varies, or goes unstated, across published work on the same
-data. We therefore examined the data-description and experimental-protocol
-sections of representative observation-level studies using the expanded TEP
-dataset, recording for each one the unit of partitioning and whether the
-handling of the pre-onset segment is stated explicitly.
-Table~\ref{tab:survey} summarizes the outcome.
-
-\begin{table}[t]
-\centering
-\caption{Reported experimental protocol in representative studies using the
-expanded TEP dataset. ``Onset stated'' records whether the treatment of
-observations preceding fault injection is described explicitly.}
-\label{tab:survey}
-\small
-\begin{tabular}{lllcc}
-\toprule
-Study & Methods & Split unit & Onset stated & Metric\\
-\midrule
-Yin et al. \cite{yin2012comparison}      & PCA, PLS, FDA, ICA & \TBD{} & \TBD{} & \TBD{}\\
-Chadha \& Schwung \cite{chadha2017comparison} & DNN, CNN      & \TBD{} & \TBD{} & \TBD{}\\
-Lomov et al. \cite{lomov2021temporal}    & LSTM, GRU, TCN     & \TBD{} & \TBD{} & \TBD{}\\
-Agarwal et al. \cite{agarwal2022lstm}    & Hierarchical LSTM  & \TBD{} & \TBD{} & \TBD{}\\
-Anitha et al. \cite{anitha2023imvoa}     & Hybrid DL          & \TBD{} & \TBD{} & \TBD{}\\
-Gao \& Hou \cite{gao2016svm}             & GS-PCA + SVM       & \TBD{} & \TBD{} & \TBD{}\\
-\midrule
-This work & Six classical classifiers & complete run & yes, both & macro-F1, MCC\\
-\bottomrule
-\end{tabular}
-\end{table}
-
-\TBD{Summarize the survey: how many of the examined studies state the treatment
-of the onset window, how many partition by run rather than by observation, and
-whether reported figures are consequently comparable.}
 
 \section{Materials and Methods}
 
@@ -385,7 +309,6 @@ observations as class 0, was not adopted because it alters the class prior of
 the normal condition and would confound the analysis of the ambiguity group.
 
 \subsection{Leakage-controlled partitioning and preprocessing}
-\label{sec:split}
 
 The original development runs were divided at the run level into training and
 validation partitions using a fixed random seed and a stratified 80/20 split
@@ -519,7 +442,7 @@ $0.7643\pm0.0034$. Random forest achieved 0.7398, followed by decision tree at
 0.6714. The two linear baselines performed substantially worse: logistic
 regression achieved 0.4685 and linear SVM achieved 0.4438.
 
-\begin{table*}[t]
+\begin{table}[t]
 \centering
 \caption{Repeated-validation performance over five seeds. Macro-F1 was the
 prespecified primary selection criterion.}
@@ -537,7 +460,7 @@ Rank & Model & Macro-F1 (mean $\pm$ SD) & 95\% CI & MCC (mean $\pm$ SD)\\
 6 & Linear SVM & $0.4438\pm0.0099$ & [0.4314, 0.4561] & $0.4377\pm0.0109$\\
 \bottomrule
 \end{tabular}
-\end{table*}
+\end{table}
 
 The Friedman test over the five seeds rejected the hypothesis of equal
 performance among the six families ($\chi^2_{5}=24.54$, $p=1.71\times10^{-4}$),
@@ -571,13 +494,13 @@ as proof of a statistically significant difference between the two models.
 The large separation between nonlinear ensembles and linear baselines indicates
 that nonlinear interactions are central to this diagnostic task.
 
-\begin{figure*}[t]
+\begin{figure}[t]
 \centering
 \includegraphics[width=0.82\textwidth]{validation_model_ranking.pdf}
 \caption{Repeated-validation macro-F1 for the six candidate algorithms. Error
 bars denote 95\% confidence intervals across five seeds.}
 \label{fig:ranking}
-\end{figure*}
+\end{figure}
 
 \subsection{Official test performance}
 
@@ -691,14 +614,14 @@ heterogeneity. Seventeen classes achieved F1 scores from 0.7429 to 0.9080.
 Classes 6 and 7 were strongest, with F1 of 0.9080 and 0.9075, respectively.
 Classes 1, 2, 5, and 14 also approached or exceeded 0.8958.
 
-\begin{figure*}[t]
+\begin{figure}[t]
 \centering
 \includegraphics[width=0.96\textwidth]{official_test_class_metrics.pdf}
 \caption{Class-wise precision, recall, and F1 on the complete official test
 partition. The dashed line indicates overall macro-F1. Class 0 is normal
 operation.}
 \label{fig:classmetrics}
-\end{figure*}
+\end{figure}
 
 Four classes were persistently difficult: class 9 (F1=0.1635), class 15
 (0.1683), normal operation (class 0; 0.1718), and class 3 (0.2357). Class 3 had
@@ -713,7 +636,7 @@ frozen model is therefore essentially saturated on these classes once the
 pre-onset segment is removed, and their reported F1 values of roughly 0.88--0.91
 are limited by the labeling convention rather than by the classifier.
 
-\begin{table*}[t]
+\begin{table}[t]
 \centering
 \caption{Class-wise results for the frozen XGBoost model on the official test
 set. Every class had support of 480,000 observations.}
@@ -736,7 +659,7 @@ Class & Precision & Recall & F1 & Class & Precision & Recall & F1\\
 10 & 0.8066 & 0.6885 & 0.7429 & & & &\\
 \bottomrule
 \end{tabular}
-\end{table*}
+\end{table}
 
 \subsection{Effect of the fault-onset window}
 \label{sec:onseteffect}
@@ -746,7 +669,7 @@ protocols of Section~\ref{sec:onset}. No refitting, retuning or reselection was
 performed; the same frozen model and the same predictions are scored under two
 label conventions.
 
-\begin{table*}[t]
+\begin{table}[t]
 \centering
 \caption{Frozen XGBoost under literal (L) and post-onset (P) labeling on the
 official test partition. Intervals are 95\% run-level bootstrap intervals over
@@ -764,7 +687,7 @@ MCC               & 0.6621 [0.6579, 0.6666] & 0.7852 [0.7798, 0.7910]\\
 Observations      & 10,080,000 & 8,480,000\\
 \bottomrule
 \end{tabular}
-\end{table*}
+\end{table}
 
 Excluding the 1,600,000 pre-onset observations, 15.87\% of the partition,
 raised macro-F1 by 0.0854, accuracy by 0.1195 and MCC by 0.1231. No model was
@@ -794,15 +717,12 @@ class 3 is thus partly a consequence of the labeling convention and partly a
 consequence of genuine overlap, and only the post-onset analysis separates the
 two.
 
-This distinction matters for comparability. As documented in
-Section~\ref{sec:survey}, published observation-level results on the expanded
-TEP dataset do not consistently state whether pre-onset samples were retained,
-discarded, or relabeled, yet the three choices are separated by several points
-of macro-F1 for an identical model. Two studies reporting different scores may
-therefore differ in labeling convention rather than in method. We recommend
-that the treatment of the onset window be reported explicitly as part of the
-experimental protocol, in the same way that the unit of partitioning is
-reported.
+This distinction matters for comparability. Published observation-level results
+on the expanded TEP dataset do not consistently state whether pre-onset samples
+were retained, discarded, or relabeled, yet the three choices are separated by
+several points of macro-F1 for an identical model. We therefore recommend that
+the treatment of the onset window be reported explicitly as part of the
+experimental protocol.
 
 \subsection{Generality of the labeling effect across model families}
 \label{sec:generality}
@@ -816,7 +736,7 @@ extremely randomized trees model in place of XGBoost; its absolute levels are
 therefore not comparable with Table~\ref{tab:test}, and only the differences
 between protocols are interpreted. No model was refitted.
 
-\begin{table*}[t]
+\begin{table}[t]
 \centering
 \caption{Effect of post-onset labeling across model families. The last column
 reports the relative accuracy gain $\Delta A/A_P$, whose structural upper bound
@@ -840,7 +760,7 @@ Linear SVM              & 0.4207 & 0.4655 & 0.142\\
 \vspace{2pt}
 {\footnotesize $^{\dagger}$Frozen model of Table~\ref{tab:test}, complete test
 partition.}
-\end{table*}
+\end{table}
 
 The five tree-based models gained between 0.0821 and 0.0854 in macro-F1, a
 spread of 0.003 across estimators whose capacities differ by orders of
@@ -910,7 +830,7 @@ Recording the degree of parallelism alongside the timing is a reproducibility
 requirement that this benchmark did not initially meet, and it has been added
 to the released code.
 
-\begin{table*}[t]
+\begin{table}[t]
 \centering
 \caption{Performance and computational cost of the six families under repeated
 validation (mean over five seeds, 420,000 training observations per
@@ -930,7 +850,7 @@ Logistic Regression  & 0.4685 & 0.4567 & 65.4 & 0.15 & 0.005\\
 Linear SVM           & 0.4438 & 0.4377 & 4.1 & 0.16 & 0.006\\
 \bottomrule
 \end{tabular}
-\end{table*}
+\end{table}
 
 Final XGBoost training required 170.34 seconds. Prediction over 10.08 million
 observations required 56.57 seconds, corresponding to 0.005612 ms per
@@ -1108,21 +1028,30 @@ available through Kaggle \cite{kaggleTEP}. All code, configuration files,
 run-level split manifests, frozen hyperparameters, five-seed validation
 outputs, final predictions, class-level metrics, confusion matrices, SHA-256
 data hashes, and the environment specification are deposited at
-\TBD{repository URL} and archived under \TBD{Zenodo DOI}. The analysis of the
+an anonymized public repository for peer review, \TBD{anonymous Zenodo DOI};
+the non-anonymized repository will be cited in the accepted version. The analysis of the
 fault-onset window can be reproduced from the deposited predictions without
 refitting any model.
 
-\section*{Acknowledgments}
+% Acknowledgments removed for double-anonymized review.
+% Restore in the accepted version.
 
-The author acknowledges the students and researchers associated with the
-MEI0028 Modeling and Simulation activities and the Scientific Computing
-Laboratory at the Pontifical Catholic University of Goi\'as.
+\section*{Declaration of Competing Interest}
 
-\section*{Conflict of Interest}
+The authors declare that they have no known competing financial interests or
+personal relationships that could have appeared to influence the work reported
+in this paper.
 
-The author declares no conflict of interest.
+\section*{CRediT Authorship Contribution Statement}
 
-\balance
+\textbf{Author 1:} Conceptualization, Methodology, Software, Validation,
+Formal analysis, Investigation, Data curation, Writing -- original draft,
+Visualization.
+\textbf{Author 2:} Methodology, Software, Validation, Investigation,
+Writing -- review \& editing.
+\textbf{Author 3:} Conceptualization, Methodology, Resources, Writing --
+review \& editing, Supervision, Project administration.
+
 \begin{thebibliography}{99}
 
 \bibitem{venkatasubramanian2003review}
@@ -1231,54 +1160,6 @@ doi: 10.1016/j.jprocont.2012.06.009.
 \bibitem{demsar2006statistical}
 J. Dem\v{s}ar, ``Statistical comparisons of classifiers over multiple data
 sets,'' \emph{Journal of Machine Learning Research}, vol. 7, pp. 1--30, 2006.
-
-\bibitem{kapoor2023leakage}
-S. Kapoor and A. Narayanan, ``Leakage and the reproducibility crisis in
-machine-learning-based science,'' \emph{Patterns}, vol. 4, no. 9, art. 100804,
-2023. doi: 10.1016/j.patter.2023.100804.
-
-\bibitem{lomov2021temporal}
-I. Lomov, M. Lyubimov, I. Makarov, and L. E. Zhukov, ``Fault detection in
-Tennessee Eastman process with temporal deep learning models,'' \emph{Journal
-of Industrial Information Integration}, vol. 23, art. 100216, 2021.
-doi: 10.1016/j.jii.2021.100216.
-
-\bibitem{chadha2017comparison}
-G. S. Chadha and A. Schwung, ``Comparison of deep neural network architectures
-for fault detection in Tennessee Eastman process,'' in \emph{Proc. 22nd IEEE
-International Conference on Emerging Technologies and Factory Automation
-(ETFA)}, 2017, pp. 1--8.
-
-\bibitem{agarwal2022lstm}
-P. Agarwal et al., ``Hierarchical deep LSTM for fault detection and diagnosis
-for a chemical process,'' \emph{Processes}, vol. 10, no. 12, art. 2557, 2022.
-doi: 10.3390/pr10122557.
-
-\bibitem{anitha2023imvoa}
-C. Anitha et al., ``Fault diagnosis of Tennessee Eastman process with detection
-quality using IMVOA with hybrid DL technique in IIoT,'' \emph{SN Computer
-Science}, vol. 4, no. 5, art. 458, 2023. doi: 10.1007/s42979-023-01851-9.
-
-\bibitem{gao2016svm}
-X. Gao and J. Hou, ``An improved SVM integrated GS-PCA fault diagnosis approach
-of Tennessee Eastman process,'' \emph{Neurocomputing}, vol. 174, pp. 906--911,
-2016.
-
-\bibitem{ku1995dpca}
-W. Ku, R. H. Storer, and C. Georgakis, ``Disturbance detection and isolation by
-dynamic principal component analysis,'' \emph{Chemometrics and Intelligent
-Laboratory Systems}, vol. 30, no. 1, pp. 179--196, 1995.
-
-\bibitem{russell2000cva}
-E. L. Russell, L. H. Chiang, and R. D. Braatz, ``Fault detection in industrial
-processes using canonical variate analysis and dynamic principal component
-analysis,'' \emph{Chemometrics and Intelligent Laboratory Systems}, vol. 51,
-no. 1, pp. 81--93, 2000.
-
-\bibitem{odiowei2010cva}
-P. P. Odiowei and Y. Cao, ``Nonlinear dynamic process monitoring using
-canonical variate analysis and kernel density estimations,'' \emph{IEEE
-Transactions on Industrial Informatics}, vol. 6, no. 1, pp. 36--45, 2010.
 
 \end{thebibliography}
 

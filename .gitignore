@@ -20,3 +20,9 @@ __pycache__/
 # Relatório de lacunas de outro manuscrito (perfil ESWA, random_state=42,
 # lista de modelos com ExtraTrees e sem XGBoost). Não se aplica a este artigo.
 results/wp1a_gap_analysis/
+
+# LaTeX build (article/)
+article/*.aux
+article/*.log
+article/*.out
+article/*.synctex.gz
