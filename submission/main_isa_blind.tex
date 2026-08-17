@@ -191,6 +191,18 @@ dynamic, nonstationary, multimodal, and autocorrelated
 \cite{yin2014review,ji2022review}. These properties motivate flexible nonlinear
 classifiers, but also demand careful validation.
 
+A substantial line of work addresses the serial correlation of process data
+directly. Dynamic PCA augments the data matrix with time-lagged variables to
+capture time-varying structure \cite{ku1995dpca}; canonical variate analysis
+models the dynamics explicitly and was compared against PCA and DPCA on the TEP
+simulator by Russell et al. \cite{russell2000cva}, later extended with kernel
+density estimation for nonlinear dynamics \cite{odiowei2010cva}. These methods
+are relevant here for a reason beyond their performance: they treat the
+temporal structure of a run as the object of analysis, whereas an
+observation-level classifier treats each row independently. The labeling
+question examined in Section~\ref{sec:onset} arises precisely at that
+boundary.
+
 \subsection{Classical machine learning for TEP diagnosis}
 
 Decision trees recursively partition the feature space into regions associated
@@ -211,6 +223,39 @@ complexity of nonlinear ensembles is justified. All implementations in this
 study were based on scikit-learn \cite{pedregosa2011sklearn}, except XGBoost,
 which used its reference implementation \cite{chen2016xgboost}.
 
+Deep architectures have been applied extensively to the same benchmark. Chadha
+and Schwung compared feedforward and convolutional networks for TEP fault
+detection \cite{chadha2017comparison}; hybrid designs combining support vector
+machines with latent-variable preprocessing \cite{gao2016svm}, hierarchical
+LSTM structures \cite{agarwal2022lstm}, and metaheuristically optimized deep
+models \cite{anitha2023imvoa} have all reported strong results. Most directly
+comparable to the present study, Lomov et al. \cite{lomov2021temporal}
+evaluated recurrent, attention-based and temporal convolutional architectures
+on the same expanded TEP dataset used here. The present work does not propose
+a competing architecture; it examines a property of the evaluation protocol
+that applies to all of them.
+
+\subsection{Evaluation protocols and leakage}
+
+Concern about evaluation protocol is not specific to process monitoring. In a
+survey across disciplines that have adopted machine learning, Kapoor and
+Narayanan identified leakage in seventeen fields, affecting at least 294
+publications and in several cases producing conclusions that did not survive
+correction \cite{kapoor2023leakage}. Their taxonomy distinguishes eight
+mechanisms, two of which bear directly on the present benchmark: temporal
+leakage, where information from the future informs a prediction about the past,
+and non-independence between training and evaluation samples, where records
+that share a common origin are distributed across partitions and treated as
+independent replicates.
+
+Both are latent in observation-level TEP classification. Consecutive samples
+within a simulation run are strongly autocorrelated, so a split performed at
+the observation level places near-duplicate records on both sides of the
+partition. The run-level protocol of Section~\ref{sec:split} is designed to
+avoid this. The labeling question analyzed in this paper is related but
+distinct: it concerns not how records are divided, but whether the label
+attached to a record describes the state of the plant at that instant.
+
 \subsection{Evaluation beyond accuracy}
 
 Accuracy can be misleading when performance varies substantially among classes.
@@ -222,6 +267,71 @@ matrices are indispensable because they reveal whether errors are diffuse or
 concentrated in specific class pairs. The present study therefore uses
 macro-F1 as the primary model-selection criterion and treats the other metrics
 as complementary evidence.
+
+\subsection{Reported treatment of the fault-onset window}
+\label{sec:survey}
+
+The analysis reported in this paper is only consequential if the treatment of
+the onset window varies, or goes unstated, across published work on the same
+benchmark. We therefore examined the data-description and experimental-protocol
+sections of representative observation-level studies, recording for each one
+the dataset variant, the unit of partitioning, and whether the handling of the
+pre-onset segment is stated explicitly. Table~\ref{tab:survey} summarizes the
+outcome.
+
+The question applies to both distributions of the benchmark. In the original
+data of Downs and Vogel as distributed by Chiang et al.
+\cite{downs1993tep,chiang2001book}, each condition is simulated for 24 hours in
+training and 48 hours in testing at a three-minute interval, giving 480 and 960
+samples, with the fault injected after one hour and eight hours respectively.
+The pre-onset fractions are therefore 4.2\% and 16.7\%, essentially identical
+to those of the expanded dataset analyzed here. The artifact is thus a property
+of the benchmark design rather than of any particular redistribution of it,
+and the results of Section~\ref{sec:onseteffect} bound what can be reported on
+either version.
+
+\begin{table}[t]
+\centering
+\caption{Reported experimental protocol in representative observation-level
+studies on the Tennessee Eastman benchmark. ``Onset stated'' records whether
+the treatment of observations preceding fault injection is described
+explicitly.}
+\label{tab:survey}
+\footnotesize
+\setlength{\tabcolsep}{3.5pt}
+\begin{tabular}{lllccl}
+\toprule
+Study & Methods & Dataset & Split unit & Onset stated & Metric\\
+\midrule
+Yin et al. \cite{yin2012comparison}      & PCA, PLS, FDA, ICA & \TBD{} & \TBD{} & \TBD{} & \TBD{}\\
+Gao \& Hou \cite{gao2016svm}             & GS-PCA + SVM       & \TBD{} & \TBD{} & \TBD{} & \TBD{}\\
+Chadha \& Schwung \cite{chadha2017comparison} & DNN, CNN      & \TBD{} & \TBD{} & \TBD{} & \TBD{}\\
+Lomov et al. \cite{lomov2021temporal}    & LSTM, GRU, TCN     & \TBD{} & \TBD{} & \TBD{} & \TBD{}\\
+Agarwal et al. \cite{agarwal2022lstm}    & Hierarchical LSTM-SAE & original & simulation file & no & FDR, FAR\\
+Anitha et al. \cite{anitha2023imvoa}     & Hybrid DL          & \TBD{} & \TBD{} & \TBD{} & \TBD{}\\
+\midrule
+This work & Six classical classifiers & expanded & complete run & yes, both & macro-F1, MCC\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+One case illustrates the pattern and the stakes. Agarwal et al.
+\cite{agarwal2022lstm} describe their data as 1440 samples per class, of which
+the first 480 are used for calibration and the remaining 960 for testing, and
+identify the source distribution explicitly. The instant of fault injection is
+not mentioned anywhere in the data description or the experimental protocol, so
+all 960 test samples are scored against the fault label although the first 160
+precede injection. The consequence is not incidental to that study's argument:
+its stated objective is to improve the diagnosis of the incipient faults 3, 9
+and 15, to which end pseudo-random binary signals are actively injected into
+the plant. Under literal labeling, part of the difficulty that motivates such
+an intervention is contributed by observations in which no fault is yet
+present.
+
+\TBD{Complete the remaining rows and summarize: how many of the examined
+studies state the treatment of the onset window, how many partition by run
+rather than by observation, and whether the reported figures are consequently
+comparable.}
 
 \section{Materials and Methods}
 
@@ -309,6 +419,7 @@ observations as class 0, was not adopted because it alters the class prior of
 the normal condition and would confound the analysis of the ambiguity group.
 
 \subsection{Leakage-controlled partitioning and preprocessing}
+\label{sec:split}
 
 The original development runs were divided at the run level into training and
 validation partitions using a fixed random seed and a stratified 80/20 split
@@ -717,12 +828,15 @@ class 3 is thus partly a consequence of the labeling convention and partly a
 consequence of genuine overlap, and only the post-onset analysis separates the
 two.
 
-This distinction matters for comparability. Published observation-level results
-on the expanded TEP dataset do not consistently state whether pre-onset samples
-were retained, discarded, or relabeled, yet the three choices are separated by
-several points of macro-F1 for an identical model. We therefore recommend that
-the treatment of the onset window be reported explicitly as part of the
-experimental protocol.
+This distinction matters for comparability. As documented in
+Section~\ref{sec:survey}, published observation-level results on the expanded
+TEP dataset do not consistently state whether pre-onset samples were retained,
+discarded, or relabeled, yet the three choices are separated by several points
+of macro-F1 for an identical model. Two studies reporting different scores may
+therefore differ in labeling convention rather than in method. We recommend
+that the treatment of the onset window be reported explicitly as part of the
+experimental protocol, in the same way that the unit of partitioning is
+reported.
 
 \subsection{Generality of the labeling effect across model families}
 \label{sec:generality}
@@ -1160,6 +1274,54 @@ doi: 10.1016/j.jprocont.2012.06.009.
 \bibitem{demsar2006statistical}
 J. Dem\v{s}ar, ``Statistical comparisons of classifiers over multiple data
 sets,'' \emph{Journal of Machine Learning Research}, vol. 7, pp. 1--30, 2006.
+
+\bibitem{kapoor2023leakage}
+S. Kapoor and A. Narayanan, ``Leakage and the reproducibility crisis in
+machine-learning-based science,'' \emph{Patterns}, vol. 4, no. 9, art. 100804,
+2023. doi: 10.1016/j.patter.2023.100804.
+
+\bibitem{lomov2021temporal}
+I. Lomov, M. Lyubimov, I. Makarov, and L. E. Zhukov, ``Fault detection in
+Tennessee Eastman process with temporal deep learning models,'' \emph{Journal
+of Industrial Information Integration}, vol. 23, art. 100216, 2021.
+doi: 10.1016/j.jii.2021.100216.
+
+\bibitem{chadha2017comparison}
+G. S. Chadha and A. Schwung, ``Comparison of deep neural network architectures
+for fault detection in Tennessee Eastman process,'' in \emph{Proc. 22nd IEEE
+International Conference on Emerging Technologies and Factory Automation
+(ETFA)}, 2017, pp. 1--8.
+
+\bibitem{agarwal2022lstm}
+P. Agarwal et al., ``Hierarchical deep LSTM for fault detection and diagnosis
+for a chemical process,'' \emph{Processes}, vol. 10, no. 12, art. 2557, 2022.
+doi: 10.3390/pr10122557.
+
+\bibitem{anitha2023imvoa}
+C. Anitha et al., ``Fault diagnosis of Tennessee Eastman process with detection
+quality using IMVOA with hybrid DL technique in IIoT,'' \emph{SN Computer
+Science}, vol. 4, no. 5, art. 458, 2023. doi: 10.1007/s42979-023-01851-9.
+
+\bibitem{gao2016svm}
+X. Gao and J. Hou, ``An improved SVM integrated GS-PCA fault diagnosis approach
+of Tennessee Eastman process,'' \emph{Neurocomputing}, vol. 174, pp. 906--911,
+2016.
+
+\bibitem{ku1995dpca}
+W. Ku, R. H. Storer, and C. Georgakis, ``Disturbance detection and isolation by
+dynamic principal component analysis,'' \emph{Chemometrics and Intelligent
+Laboratory Systems}, vol. 30, no. 1, pp. 179--196, 1995.
+
+\bibitem{russell2000cva}
+E. L. Russell, L. H. Chiang, and R. D. Braatz, ``Fault detection in industrial
+processes using canonical variate analysis and dynamic principal component
+analysis,'' \emph{Chemometrics and Intelligent Laboratory Systems}, vol. 51,
+no. 1, pp. 81--93, 2000.
+
+\bibitem{odiowei2010cva}
+P. P. Odiowei and Y. Cao, ``Nonlinear dynamic process monitoring using
+canonical variate analysis and kernel density estimations,'' \emph{IEEE
+Transactions on Industrial Informatics}, vol. 6, no. 1, pp. 36--45, 2010.
 
 \end{thebibliography}
 
