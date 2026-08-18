@@ -31,3 +31,7 @@ article/*.synctex.gz
 article/main_revised.tex
 article/*.bak
 *.zip
+submission/*.spl
+submission/*.aux
+submission/*.log
+submission/*.out
