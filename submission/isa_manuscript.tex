@@ -1085,8 +1085,64 @@ could support autonomous decisions.
 % system.
 % ---------------------------------------------------------------------------
 
-\TBD{Practitioner perspective on method selection: to be written by the
-industrial co-authors following the guidance in the source comments.}
+% DRAFT for review by the industrial co-authors. Passages marked \CHECK{}
+% state something that should be confirmed or replaced with figures from
+% operating experience. Replace the placeholders, correct what is wrong, and
+% remove this notice.
+
+The results above matter for an engineer specifying a diagnostic system, and
+they matter in a way that is easy to miss. Benchmark figures circulate as
+evidence of capability: a vendor or an internal team reporting a macro-F1 of
+0.80 on the TEP appears to offer a better method than one reporting 0.72.
+Sections~\ref{sec:onseteffect} and \ref{sec:generality} show that this
+particular difference is fully accounted for by the labeling convention, for
+an identical model. The question to put to a reported figure is therefore not
+only which algorithm produced it, but over which observations it was computed:
+whether the interval between the disturbance entering the process and its
+becoming observable was scored as faulty, as normal, or excluded.
+
+The benchmark's fixed injection instant has no counterpart in an operating
+plant, but the underlying interval does. A disturbance entering a unit does
+not appear simultaneously in the instrumentation: it propagates through
+transport delay, is attenuated or temporarily masked by the control loops
+acting to reject it, and becomes visible only when it exceeds the normal
+variability of the affected measurements. \CHECK{Give a concrete order of
+magnitude from operating experience, and name what governs it in practice --
+sensor placement, loop tuning, transport lag, sampling and scan rate.} During
+that interval a diagnostic model receives data that carries no signature of
+the condition it is expected to report. Whatever the label attached to those
+observations in a historical dataset, the model cannot separate them, and a
+figure of merit computed over them measures the labeling convention rather
+than the diagnostic system.
+
+The group $\{0,3,9,15\}$ makes the same point in a sharper form. These
+conditions survive the correction of Section~\ref{sec:onseteffect} because
+they leave no persistent signature in the 52 measured variables, and the
+literature has reported them as weakly detectable for two decades. For a
+deployment this is not a modeling deficiency to be solved with a better
+classifier: it is a statement about what the existing instrumentation can
+observe. \CHECK{From practice: when a condition proves undiagnosable from the
+available process data, what is the usual course -- additional or relocated
+instrumentation, a different measurement principle, or accepting that the
+condition is handled by other means? What governs that decision
+economically?}
+
+Finally, the cost results of Table~\ref{tab:cost} show that no model dominates.
+HistGradientBoosting trained 11.8 times faster than XGBoost for a difference of
+0.0040 in macro-F1, while XGBoost inferred 4.2 times faster; the random forest
+required approximately 8.7\,GB. Which of these constraints binds depends on the
+deployment rather than on the benchmark. \CHECK{From experience: in the
+installations you work with, what is the actual limiting factor -- how often
+models are retrained, the latency budget within the scan cycle, or the memory
+and storage available on the controller, edge device or historian? An example
+of a constraint that ruled out an otherwise adequate method would be
+valuable here.}
+
+The common thread is that benchmark performance and deployment readiness are
+distinct properties, and that the distance between them is not only a matter
+of model quality. It also depends on how the evaluation was constructed, on
+what the instrumentation can observe, and on the resources available where the
+model will actually run.
 
 \subsection{Interpretation of the ambiguity group}
 
