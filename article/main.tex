@@ -47,44 +47,31 @@ for Fault Diagnosis in the Tennessee Eastman Process}}
 \maketitle
 
 \begin{abstract}
-Fault diagnosis in industrial processes is complicated by nonlinear variable
-interactions, temporal dependence, and fault signatures that overlap normal
-operation. This work presents a reproducible benchmark of six classical
-machine-learning methods for multiclass diagnosis in the Tennessee Eastman
-Process (TEP): logistic regression, decision tree, random forest,
-histogram-based gradient boosting, linear support vector machine, and XGBoost.
-The expanded TEP data comprised 15.33 million observations, 52 process
-variables, normal operation, and 20 fault classes. To control leakage, data
-were partitioned by complete simulation runs, and standardization parameters
-were estimated using training data only. Hyperparameters were selected on a
-validation partition, followed by repeated validation over five seeds. The
-prespecified primary criterion was macro-F1. XGBoost ranked first in repeated
-validation, with macro-F1 of $0.7683\pm0.0017$ and Matthews correlation
-coefficient (MCC) of $0.7426$. After freezing the model and protocol, a single
-evaluation was performed on the complete official test partition containing
-10.08 million observations. Under the literal labels distributed with the
-dataset, the final model achieved accuracy of 0.6754, macro-F1 of 0.7200, and
-MCC of 0.6621. We further show that these figures are bounded by a structural
-property of the benchmark itself. Because each fault is injected 160 samples
-into every 960-sample official test run, literal labeling imposes a recall
-ceiling of $800/960=0.8333$ on every fault class. Faults 6 and 7 attained
-recalls of 0.8333 and 0.8332, that is, the ceiling itself. Re-evaluating only
-the post-onset segment raised macro-F1 from 0.7200 to 0.8054, accuracy from 0.6754 to
-0.7949, and MCC from 0.6621 to 0.7852, without refitting the model. Among the
-1.6 million pre-onset test observations, 92.0\% were assigned to normal
-operation or to the weakly observable faults 3, 9 and 15, which is the
-physically correct response and is nonetheless scored as error under literal
-labels. The effect is not specific to the selected model: seven classifiers
-spanning single trees, ensembles and linear baselines all show a relative
-accuracy gain between 0.142 and 0.150, against a structural bound of 0.1587. Rescoring the validation partition under the same protocol raised its macro-F1
-from 0.7706 to 0.7953, so that the apparent validation-to-test generalization
-gap of $+0.0483$ becomes $-0.0125$ under a symmetric comparison. The gap
-therefore reflects the difference in mislabeled fraction between development
-runs (4\%) and test runs (16.7\%) rather than a loss of generalization. Seventeen classes were diagnosed reliably, whereas normal
-operation and faults 3, 9, and 15 remained mutually confounded, consistent with
-their long-documented weak observability. Nonlinear tree ensembles provide
-strong diagnosis for most TEP conditions, but aggregate metrics conceal both
-class-specific limitations and labeling artifacts that are rarely reported.
+Fault diagnosis in the Tennessee Eastman Process (TEP) is a standard benchmark
+for data-driven process monitoring, yet published results are difficult to
+compare. We present a leakage-controlled benchmark of six classical
+classifiers: logistic regression, decision tree, random forest,
+histogram-based gradient boosting, linear support vector machine and XGBoost.
+Data were partitioned by complete simulation runs, standardization was fitted
+on training data only, hyperparameters were selected on a separate validation
+partition, variability was measured over five seeds, and the frozen model was
+evaluated once on the complete official test partition of 10.08 million
+observations. XGBoost ranked first in repeated validation (macro-F1
+$0.7683\pm0.0017$) and reached a test macro-F1 of 0.7200, accuracy of 0.6754
+and MCC of 0.6621 under the labels distributed with the dataset.
+
+These figures are bounded by the benchmark itself. Each fault is injected 160
+samples into every 960-sample test run, so literal labeling caps the recall of
+every fault class at 0.8333; faults 6 and 7 attain 0.8333 and 0.8332, the
+ceiling itself. Rescoring the same frozen model over the post-onset segment,
+without refitting, raises macro-F1 to 0.8054, accuracy to 0.7949 and MCC to
+0.7852, and the apparent validation-to-test generalization gap of $+0.0483$
+becomes $-0.0125$ under a symmetric comparison. Across seven classifiers the
+relative accuracy gain lies between 0.142 and 0.150 against a structural bound
+of 0.1587, so the effect is a property of the labeling convention rather than
+of any estimator. Normal operation and faults 3, 9 and 15 remain mutually
+confounded after the correction, consistent with their known weak
+observability.
 \end{abstract}
 
 \noindent\textbf{Keywords:} Tennessee Eastman Process; fault diagnosis;

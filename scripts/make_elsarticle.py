@@ -74,6 +74,11 @@ body = body.replace("\\resizebox{\\textwidth}{!}{%\n\\begin{tabular}",
                     "\\begin{tabular}")
 body = body.replace("\\end{tabular}}\n\\end{table}",
                     "\\end{tabular}\n\\end{table}")
+# figures were sized for a narrow column; scale for the single-column page
+body = body.replace("width=\\columnwidth", "width=0.72\\textwidth")
+body = body.replace("width=0.96\\textwidth", "width=0.78\\textwidth")
+body = body.replace("width=0.82\\textwidth", "width=0.70\\textwidth")
+
 body = body.replace("\\begin{tabular}", "\\fit{\\begin{tabular}")
 body = body.replace("\\end{tabular}", "\\end{tabular}}")
 
