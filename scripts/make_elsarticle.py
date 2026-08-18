@@ -82,6 +82,11 @@ body = body.replace("width=0.82\\textwidth", "width=0.70\\textwidth")
 body = body.replace("\\begin{tabular}", "\\fit{\\begin{tabular}")
 body = body.replace("\\end{tabular}", "\\end{tabular}}")
 
+# CRediT names identify the authors: keep the roles, drop the names
+body = body.replace("\\textbf{Alexandre Coelho:}", "\\textbf{First author:}")
+body = body.replace("\\textbf{Rodrigo Ruzi:}", "\\textbf{Second author:}")
+body = body.replace("\\textbf{Clarimar Jos\\'e Coelho:}", "\\textbf{Third author:}")
+
 # acknowledgments identify the authors: remove for review
 body = re.sub(r"\\section\*\{Acknowledgments\}.*?(?=\\section\*|\\begin\{thebibliography\})",
               "% Acknowledgments removed for double-anonymized review.\n\n",
