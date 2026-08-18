@@ -496,6 +496,7 @@ regression, which was optimized to convergence. Kernel SVMs were not evaluated
 for the same computational reason.
 
 \subsection{Repeated validation}
+\label{sec:repeated}
 
 After selecting the best configuration for each model family, variability was
 measured across seeds 2026--2030. For each seed, 40 complete runs per class were
@@ -549,10 +550,10 @@ only that assertion was changed, and the full incident log is available in the
 repository.
 
 The choice of 840,000 development observations, rather than the full 5,250,000
-available, was imposed by the computational budget. To verify that this choice
-does not materially affect the conclusions, a learning curve was computed on
-the validation partition over $\{10,20,40,80,160\}$ complete runs per class:
-\TBD{learning-curve result and saturation point}.
+available, was imposed by the computational budget. To bound the effect of that
+choice, the frozen configuration was refitted on $\{10,20,40,80,160\}$ complete
+runs per class and scored on the full validation partition, sampling at the run
+level throughout. Results are reported in Section~\ref{sec:learningcurve}.
 
 \subsection{Performance measures and reproducibility}
 \label{sec:reproducibility}
@@ -636,7 +637,57 @@ bars denote 95\% confidence intervals across five seeds.}
 \label{fig:ranking}
 \end{figure}
 
+\subsection{Sensitivity to the size of the development set}
+\label{sec:learningcurve}
+
+Table~\ref{tab:learning} reports macro-F1 on the complete validation partition
+as a function of the number of complete runs per class used for fitting, under
+both labeling protocols. All fits used the frozen configuration and 24 threads.
+
+\begin{table}[H]
+\centering
+\caption{Validation macro-F1 as a function of the training set size, in
+complete runs per class. $\Delta$ is the gain over the preceding row, that is,
+the effect of doubling the data.}
+\label{tab:learning}
+\small
+\fit{\begin{tabular}{rrccccr}
+\toprule
+Runs/class & Observations & F1 (L) & $\Delta$ & F1 (P) & $\Delta$ & Fit (s)\\
+\midrule
+10  & 105,000   & 0.7538 & --      & 0.7780 & --      & 59.0\\
+20  & 210,000   & 0.7591 & 0.0052 & 0.7847 & 0.0067 & 65.2\\
+40  & 420,000   & 0.7672 & 0.0082 & 0.7930 & 0.0083 & 111.6\\
+80  & 840,000   & 0.7756 & 0.0083 & 0.7988 & 0.0058 & 175.4\\
+160 & 1,680,000 & 0.7806 & 0.0051 & 0.8016 & 0.0028 & 357.4\\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+Two observations follow. First, the procedure reproduces the repeated-validation
+result: at 40 runs per class it yields a macro-F1 of 0.7672 against the
+$0.7683\pm0.0017$ of Table~\ref{tab:validation}, a difference of 0.0011, which
+confirms that the curve is measured under the protocol of Section~\ref{sec:repeated}
+rather than under a variant of it.
+
+Second, the returns diminish. Doubling the data from 80 to 160 runs per class
+adds 0.0051 in macro-F1 under literal labeling and 0.0028 under post-onset
+labeling; quadrupling from the 40 runs per class used in the frozen fit adds
+0.0134 and 0.0086 respectively. The frozen model is therefore not at the
+asymptote, and the figures reported in Section~\ref{sec:testperf} are
+conservative in that sense, but the residual headroom is of the same order as
+the separation between the two leading model families and does not alter the
+ranking.
+
+The comparison that matters for this paper is between that headroom and the
+effect under study. Quadrupling the training data from the size actually used
+gains 0.0086 in post-onset macro-F1; changing the labeling convention on a
+single fixed model changes macro-F1 by 0.0854, an order of magnitude more.
+Whatever remains to be gained from more data, it is small beside what is
+gained or lost by how the pre-onset window is scored.
+
 \subsection{Official test performance}
+\label{sec:testperf}
 
 After the protocol was frozen, the selected XGBoost model was fitted to 840,000
 development observations and evaluated on the complete official test set.
@@ -1194,11 +1245,12 @@ data partitions.
 Fourth, hyperparameter search was intentionally limited to three candidates per
 model family to preserve computational feasibility and transparency. A larger
 search might improve individual algorithms, particularly the linear baselines
-or random forest. Fifth, the final model was fitted to 840,000 of the 5,250,000
-available development observations, and model selection was carried out at
-420,000; a ranking established at one training scale need not be invariant to
-scale, and the learning curve reported in Section~\ref{sec:selection} bounds but
-does not eliminate this concern. Sixth, the linear SVM was a stochastic-gradient
+or random forest. Fifth, the final model was fitted to 840,000 of the 5,250,000 available
+development observations, and model selection was carried out at 420,000.
+Section~\ref{sec:learningcurve} shows that the residual headroom at that size is
+0.0086 in post-onset macro-F1 under quadrupling, so the reported figures are
+conservative; a ranking established at one training scale need not be invariant
+to scale, and the curve bounds but does not eliminate this concern. Sixth, the linear SVM was a stochastic-gradient
 surrogate and its result should not be read as the best attainable
 linear-margin performance. Seventh, the degree of parallelism was not recorded in the run manifests, so
 the training times of Table~\ref{tab:cost} support ordinal comparison between
