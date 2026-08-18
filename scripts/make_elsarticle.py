@@ -117,6 +117,7 @@ preamble = r"""%% ISA Transactions -- blinded submission (elsarticle)
 
 %% \TBD{} marks values still to be filled. Remove before submission.
 \newcommand{\TBD}[1]{\textcolor{red}{\textbf{[TBD:~#1]}}}
+\newcommand{\CHECK}[1]{\textcolor{blue}{\textbf{[CO-AUTHORS:~#1]}}}
 
 %% Shrink a table only if it is wider than the text block.
 \newcommand{\fit}[1]{%
