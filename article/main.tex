@@ -634,20 +634,12 @@ differences. Both support the conservative reading adopted here: the ordering
 is reproducible, the gap between the two leading models is not resolvable at
 this sample size, and additional seeds would be required to settle it.
 
-Figure~\ref{fig:ranking} shows the ranking and its uncertainty. The confidence
-intervals of XGBoost and HistGradientBoosting overlapped. Accordingly, XGBoost
+The confidence intervals of XGBoost and HistGradientBoosting overlapped. Accordingly, XGBoost
 was selected by the prespecified macro-F1 rule, but the result is not presented
 as proof of a statistically significant difference between the two models.
 The large separation between nonlinear ensembles and linear baselines indicates
 that nonlinear interactions are central to this diagnostic task.
 
-\begin{figure*}[t]
-\centering
-\includegraphics[width=0.82\textwidth]{validation_model_ranking.pdf}
-\caption{Repeated-validation macro-F1 for the six candidate algorithms. Error
-bars denote 95\% confidence intervals across five seeds.}
-\label{fig:ranking}
-\end{figure*}
 
 \subsection{Sensitivity to the size of the development set}
 \label{sec:learningcurve}
@@ -806,19 +798,10 @@ segment being only 20 samples long and overlapping the simulation transient.
 
 \subsection{Class-specific performance}
 
-Figure~\ref{fig:classmetrics} and Table~\ref{tab:classwise} demonstrate marked
-heterogeneity. Seventeen classes achieved F1 scores from 0.7429 to 0.9080.
+Table~\ref{tab:classwise} demonstrates marked heterogeneity. Seventeen classes achieved F1 scores from 0.7429 to 0.9080.
 Classes 6 and 7 were strongest, with F1 of 0.9080 and 0.9075, respectively.
 Classes 1, 2, 5, and 14 also approached or exceeded 0.8958.
 
-\begin{figure*}[t]
-\centering
-\includegraphics[width=0.96\textwidth]{official_test_class_metrics.pdf}
-\caption{Class-wise precision, recall, and F1 on the complete official test
-partition. The dashed line indicates overall macro-F1. Class 0 is normal
-operation.}
-\label{fig:classmetrics}
-\end{figure*}
 
 Four classes were persistently difficult: class 9 (F1=0.1635), class 15
 (0.1683), normal operation (class 0; 0.1718), and class 3 (0.2357). Class 3 had
@@ -927,14 +910,13 @@ reported.
 \subsection{Generality of the labeling effect across model families}
 \label{sec:generality}
 
-If the effect of Section~\ref{sec:onseteffect} is a property of the labeling
-convention rather than of the selected classifier, it should appear in every
-model evaluated on the same partition. To test this, an auxiliary experiment
-was rescored under both protocols. That experiment predates the frozen
-benchmark, uses a per-class subsample of the test partition, and includes an
-extremely randomized trees model in place of XGBoost; its absolute levels are
-therefore not comparable with Table~\ref{tab:test}, and only the differences
-between protocols are interpreted. No model was refitted.
+If the effect is a property of the labeling convention rather than of the
+selected classifier, it should appear in every model evaluated on the same
+partition. An auxiliary experiment was therefore rescored under both protocols.
+It predates the frozen benchmark, uses a per-class subsample of the test
+partition and includes an extremely randomized trees model in place of XGBoost,
+so only the differences between protocols are interpreted. No model was
+refitted.
 
 \begin{table*}[t]
 \centering
@@ -968,24 +950,19 @@ magnitude, from a single unpruned tree to a regularized boosting ensemble. No
 overfitting mechanism produces that uniformity, because the degradation
 associated with overfitting scales with model capacity.
 
-The relative accuracy gain explains the pattern quantitatively. If a classifier
-assigns pre-onset observations to any class other than the labeled fault, its
-literal accuracy is its post-onset accuracy scaled by the retained fraction of
-the partition, so that $\Delta A/A_P$ is bounded above by 0.1587 independently
-of the model. The seven models fall between 0.142 and 0.150, the residual being
-the small fraction of pre-onset observations that match the literal label by
+The relative accuracy gain explains the pattern. If a classifier assigns
+pre-onset observations to any class other than the labeled fault, its literal
+accuracy is its post-onset accuracy scaled by the retained fraction of the
+partition, so $\Delta A/A_P$ is bounded above by 0.1587 independently of the
+model. The seven models fall between 0.142 and 0.150, the residual being the
+small fraction of pre-onset observations that match the literal label by
 chance. The linear baselines gain less in absolute terms, 0.0415 and 0.0448,
-simply because they start lower; in relative terms they are affected almost
-identically. They also route far fewer pre-onset observations to the group
-$\{0,3,9,15\}$, 20.6\% and 41.9\% against 65.7--70.2\% for the ensembles, and
-are penalized in the same proportion regardless.
-
-The consequence is that the effect is not a property of any estimator. Any
-observation-level result reported on this dataset under literal labels
-understates the post-onset discriminative capacity of the model by a factor
-predictable from its own accuracy. Comparisons between published results are
-correspondingly affected whenever the treatment of the onset window differs or
-is unstated.
+only because they start lower, and they route far fewer pre-onset observations
+to the group $\{0,3,9,15\}$, 20.6\% and 41.9\% against 65.7--70.2\% for the
+ensembles, yet are penalized in the same proportion. Any observation-level
+result reported on this dataset under literal labels therefore understates the
+post-onset discriminative capacity of the model by a factor predictable from
+its own accuracy.
 
 \subsection{Structure of the remaining errors}
 
@@ -1075,27 +1052,17 @@ threshold effects and high-order interactions without requiring an explicit
 feature expansion, which is consistent with the nonlinear and feedback-driven
 nature of the TEP.
 
-The difference between XGBoost and HistGradientBoosting was small: 0.0040 in
-mean macro-F1, with overlapping 95\% confidence intervals. Thus, the defensible
-conclusion is that XGBoost won under the prespecified ranking rule, not that it
-was conclusively superior under all resampling regimes. Table~\ref{tab:cost}
-makes the practical consequence explicit, and it does not favour a single
-model. HistGradientBoosting trained 11.8 times faster than XGBoost (73.5\,s
-against 864.7\,s) for a deficit of 0.0040 in macro-F1 with overlapping
-intervals, so it dominates whenever models are retrained frequently or the
-training budget is constrained. The ordering reverses at inference time, where
-XGBoost required 7.03\,$\mu$s per observation against 29.40\,$\mu$s, a factor of
-4.2 in favour of XGBoost. Neither model dominates the other: the choice follows
-from whether the deployment is retraining-bound or scoring-bound, and both
-conclusions are invisible if only the selected model is profiled.
-
-Model size adds a third and largely independent constraint. The random forest
-required approximately 8.7\,GB, some 460 times the XGBoost artifact, for
-0.0285 less macro-F1. Whatever its statistical merits, it is not a candidate
-for embedded or edge deployment, and this would not be apparent from predictive
-metrics alone. The two linear baselines occupied roughly 5\,kB and inferred in
-0.15\,$\mu$s per observation, which quantifies precisely what is being paid for
-the nonlinear gain of about 0.30 in macro-F1.
+XGBoost and HistGradientBoosting differed by 0.0040 in mean macro-F1 with
+overlapping intervals, so the defensible conclusion is that XGBoost won under
+the prespecified rule, not that it is superior under all resampling regimes.
+Table~\ref{tab:cost} shows that the practical choice does not favour either:
+HistGradientBoosting trained 11.8 times faster, while XGBoost inferred 4.2
+times faster, so the decision follows from whether the deployment is
+retraining-bound or scoring-bound. Model size is a third and largely
+independent constraint: the random forest required some 460 times the XGBoost
+artifact for 0.0285 less macro-F1, which rules it out for embedded deployment
+without being visible in any predictive metric. None of these conclusions can
+be drawn when only the selected model is profiled.
 
 \subsection{Why global performance is insufficient}
 
@@ -1242,77 +1209,65 @@ not be reused for tuning them.
 
 \subsection{Threats to validity}
 
-Several limitations delimit the conclusions. First, TEP is a high-fidelity
-simulation benchmark, not a physical plant. Results may not transfer directly
-to sensor drift, maintenance changes, unmodeled disturbances, communication
-losses, or evolving operating modes in real facilities. Second, the benchmark
-evaluated pointwise multiclass diagnosis and did not measure detection delay,
-time-to-alarm, false alarms per run, or sustained alarm logic. Third, five seeds
-provide a useful but small basis for uncertainty estimation. The resulting
-$t$ intervals characterize the implemented experiment rather than all possible
-data partitions.
+The TEP is a high-fidelity simulation, not a physical plant, so the results
+need not transfer to sensor drift, maintenance changes, unmodeled disturbances
+or evolving operating modes; and the evaluation is pointwise multiclass
+diagnosis, which does not measure detection delay, false alarms per run or
+sustained alarm logic. The uncertainty estimates rest on five seeds and
+characterize the implemented experiment rather than all possible partitions,
+and the hyperparameter search was deliberately limited to three candidates per
+family, so individual algorithms, particularly the linear baselines, might
+improve under a wider search. The linear SVM in particular was a
+stochastic-gradient surrogate and should not be read as the best attainable
+margin classifier.
 
-Fourth, hyperparameter search was intentionally limited to three candidates per
-model family to preserve computational feasibility and transparency. A larger
-search might improve individual algorithms, particularly the linear baselines
-or random forest. Fifth, the final model was fitted to 840,000 of the 5,250,000 available
-development observations, and model selection was carried out at 420,000.
-Section~\ref{sec:learningcurve} shows that the residual headroom at that size is
-0.0086 in post-onset macro-F1 under quadrupling, so the reported figures are
-conservative; a ranking established at one training scale need not be invariant
-to scale, and the curve bounds but does not eliminate this concern. Sixth, the linear SVM was a stochastic-gradient
-surrogate and its result should not be read as the best attainable
-linear-margin performance. Seventh, the degree of parallelism was not recorded in the run manifests, so
-the training times of Table~\ref{tab:cost} support ordinal comparison between
-families, which shared one invocation, but not comparison against the timings
-of other stages. Eighth, interpretation focused on output behavior
-and did not include feature attribution or causal process analysis. Finally, the
-dataset had balanced class support, whereas real industrial faults are rare and
-highly imbalanced. Metrics, thresholds, and alarm costs would require
-recalibration under field prevalence.
+Three further caveats bear on quantities reported here. The final model used
+840,000 of the 5,250,000 available development observations and selection was
+performed at 420,000; Section~\ref{sec:learningcurve} bounds the residual
+headroom at 0.0086 in post-onset macro-F1 under quadrupling, so the reported
+figures are conservative, but a ranking established at one scale need not be
+invariant to it. The degree of parallelism was not recorded in the run
+manifests, so the times in Table~\ref{tab:cost} support ordinal comparison
+between families, which shared one invocation, but not comparison against other
+stages. Finally, class support is balanced by construction, whereas industrial
+faults are rare; metrics, thresholds and alarm costs would require
+recalibration under field prevalence. Interpretation throughout focused on
+output behaviour and did not include feature attribution or causal analysis.
 
 \section{Conclusion}
 
-This work presented a reproducible classical-machine-learning benchmark for
-21-class fault diagnosis in the Tennessee Eastman Process. Run-level splitting,
-train-only standardization, separate tuning and validation, five-seed repetition,
-and a single frozen official test evaluation were used to reduce leakage and
-post-selection bias.
+This work presented a leakage-controlled benchmark of six classical classifiers
+for 21-class fault diagnosis in the Tennessee Eastman Process, using run-level
+splitting, train-only standardization, separate tuning and validation,
+five-seed repetition and a single frozen test evaluation.
 
-XGBoost achieved the highest repeated-validation macro-F1
-($0.7683\pm0.0017$) and produced an official test macro-F1 of 0.7200, accuracy
-of 0.6754, and MCC of 0.6621 over 10.08 million observations under literal
-labeling, rising to a macro-F1 of 0.8054, an accuracy of 0.7949 and an MCC of
-0.7852 once the pre-onset segment of each faulty run is excluded, with no
-refitting of any kind. The validation partition, rescored under the same
-protocol, moved from 0.7706 to 0.7953, so that the apparent generalization gap
-of $+0.0483$ in macro-F1 becomes $-0.0125$ once the comparison is made
-symmetric. Seventeen classes were diagnosed with F1 between
-0.7429 and 0.9080, and several of them were shown to sit at the structural
-recall ceiling imposed by the labeling convention rather than at the limit of
-the classifier. Normal operation and faults 3, 9, and 15 remained strongly
-confounded, in agreement with two decades of TEP monitoring literature, and
-this confounding survives the removal of the labeling artifact.
+XGBoost ranked first in repeated validation ($0.7683\pm0.0017$) and produced a
+test macro-F1 of 0.7200, accuracy of 0.6754 and MCC of 0.6621 over 10.08
+million observations under literal labeling, rising to 0.8054, 0.7949 and
+0.7852 once the pre-onset segment is excluded, with no refitting. Rescoring the
+validation partition under the same protocol turns an apparent generalization
+gap of $+0.0483$ into $-0.0125$. Several of the seventeen well-diagnosed
+classes were shown to sit at the structural recall ceiling imposed by the
+labeling convention rather than at the limit of the classifier, while normal
+operation and faults 3, 9 and 15 remain confounded after the artifact is
+removed.
 
-Three conclusions follow. Nonlinear tree ensembles provide effective diagnosis
-for most TEP conditions. Aggregate scores overstate practical reliability when
-a small group of classes dominates the remaining errors. And a benchmark result
-on the expanded TEP dataset is not interpretable, nor comparable across
-studies, unless the treatment of the fault-onset window is stated explicitly.
-A single frozen model differs by 0.085 in macro-F1 and 0.123 in MCC between two
-defensible labeling conventions, which is larger than most of the improvements
-reported between competing architectures on this benchmark. The effect is
-moreover common to every model family tested, with a relative accuracy gain
-between 0.142 and 0.150 across seven classifiers, so it displaces published
-results without reordering them only when all studies happen to adopt the same
-convention. We therefore
-recommend that the treatment of the onset window be stated as part of the
-experimental protocol in any observation-level study using these data.
+Three conclusions follow. Nonlinear tree ensembles diagnose most TEP conditions
+effectively. Aggregate scores overstate practical reliability when a small group
+of classes dominates the remaining errors. And a benchmark result on these data
+is not comparable across studies unless the treatment of the fault-onset window
+is stated: a single frozen model differs by 0.085 in macro-F1 between two
+defensible conventions, more than most improvements reported between competing
+architectures, and the effect is common to all seven model families tested. We
+recommend that the treatment of the onset window be reported as part of the
+experimental protocol, alongside the unit of partitioning.
 
 Future work should investigate temporal aggregation, hierarchical diagnosis,
-probability calibration, detection delay, and cost-sensitive alarm rules under
-a new untouched test protocol. External validation with physical industrial
-data will be necessary before deployment-oriented conclusions can be drawn.
+probability calibration and cost-sensitive alarm rules under a new untouched
+test protocol. Sequence models raise the question in a richer form: windowed
+labeling introduces a third category of observations, those spanning the
+injection instant, whose proportion depends on the windowing scheme of each
+study.
 
 \section*{Data and Code Availability}
 
@@ -1323,7 +1278,7 @@ run-level split manifests, frozen hyperparameters, five-seed validation
 outputs, final predictions, class-level metrics, confusion matrices, SHA-256
 data hashes, and the environment specification are deposited at
 \url{https://github.com/clarimar/tep-onset-benchmark} and archived under
-10.5281/zenodo.15234567. The analysis of the fault-onset window can be
+\TBD{Zenodo concept DOI}. The analysis of the fault-onset window can be
 reproduced from the deposited predictions without refitting any model.
 
 \section*{CRediT Authorship Contribution Statement}
