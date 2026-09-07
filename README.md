@@ -133,10 +133,21 @@ python3 scripts/postonset_analysis.py \
 
 ## Layout
 
+The manuscript has one source and one output. `article/main.tex` is the file to
+edit; `scripts/make_elsarticle.py` converts it into the blinded, single-column
+submission under `submission/`. Never edit files in `submission/` -- they are
+overwritten on every build.
+
+To read a compact two-column draft locally, run `cd article && pdflatex main.tex`;
+that PDF is deliberately not versioned, so that only one PDF in the repository
+can be mistaken for the submission.
+
 ```
-article/            manuscript (LaTeX + figures + PDF)
+article/            manuscript source (LaTeX + figures); no PDF is versioned
+submission/         the ISA Transactions PDF, generated from article/main.tex
 wp1a/               pipeline package: tune, repeat, final_test, core, finalize
-scripts/            data audit, split manifest, protocol checks, onset analysis
+scripts/            data audit, split manifest, protocol checks, onset analysis,
+                    learning curve, and the submission generator
 data/
   metadata/         download manifest with SHA-256 hashes
   processed/        split_manifest.csv, preprocessing config
@@ -176,12 +187,14 @@ test partition was not read.
 
 ```bibtex
 @software{coelho_tep_onset_benchmark,
-  author    = {Coelho, Clarimar Jos\'e},
-  title     = {Fault-Onset Labeling and Classical ML Benchmarking in the
-               Tennessee Eastman Process},
+  author    = {Coelho, Alexandre and Ruzzi, Rodrigo de Souza and
+               Coelho, Clarimar Jos\'e},
+  title     = {Fault-Onset Labeling Bounds Reported Accuracy in the Tennessee
+               Eastman Benchmark: Code and Results},
   year      = {2026},
   publisher = {Zenodo},
-  doi       = {PLACEHOLDER}
+  version   = {v1.0.1},
+  doi       = {10.5281/zenodo.22645013}
 }
 ```
 
