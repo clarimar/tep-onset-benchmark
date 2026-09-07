@@ -25,8 +25,6 @@
 % and replace every marker. Compile will show them in red.
 % =================================================================
 \newcommand{\TBD}[1]{\textcolor{red}{\textbf{[TBD:~#1]}}}
-% Points for the industrial co-authors to confirm or replace.
-\newcommand{\CHECK}[1]{\textcolor{blue}{\textbf{[CO-AUTHORS:~#1]}}}
 
 % Alternative titles that foreground the new contribution:
 %  (a) "Fault-Onset Labeling Determines Reported Accuracy in the
@@ -34,7 +32,6 @@
 %       Classical Classifiers"
 %  (b) "How Much of TEP Diagnostic Error Is a Labeling Artifact?
 %       A Leakage-Controlled Benchmark of Classical Classifiers"
-
 
 \title{\Large\textbf{A Reproducible Benchmark of Classical Machine Learning Methods\\
 for Fault Diagnosis in the Tennessee Eastman Process}}
@@ -1152,7 +1149,7 @@ could support autonomous decisions.
 % system.
 % ---------------------------------------------------------------------------
 
-% Passages marked \CHECK{} are for the industrial co-authors to read and
+% Passages marked are for the industrial co-authors to read and
 % either agree with or replace. No new data is requested.
 
 Benchmark figures circulate as evidence of capability: a method reporting a
@@ -1179,8 +1176,6 @@ and delay timers trade detection delay against nuisance alarms
 observations in that interval, a model receives data carrying no signature of
 the condition it is expected to report, and a figure of merit computed over
 them measures the labeling convention rather than the diagnostic system.
-\CHECK{Read this paragraph and say whether it matches field practice. If you
-disagree with any part, propose replacement wording.}
 
 The group $\{0,3,9,15\}$ makes the same point in a sharper form. These
 conditions survive the correction of Section~\ref{sec:onseteffect} because they
@@ -1194,8 +1189,7 @@ diagnosability, reliability and sensor cost has been demonstrated on the
 Tennessee Eastman flowsheet itself \cite{bhushan2002sensor}. The implication
 for practice is that when a condition proves undiagnosable from the available
 measurements, the productive response is to revisit the measurement set, not to
-continue tuning the classifier. \CHECK{Read this paragraph and say whether the conclusion holds in practice.
-If you disagree, propose replacement wording.}
+continue tuning the classifier.
 
 The cost results of Table~\ref{tab:cost} show that no model dominates.
 HistGradientBoosting trained 11.8 times faster than XGBoost for a difference of
@@ -1204,8 +1198,7 @@ required approximately 8.7\,GB. Which constraint binds is a property of the
 installation rather than of the benchmark: a model retrained weekly on a
 workstation and a model scoring within the scan cycle of a controller are
 limited by different quantities, and neither limit is visible in a predictive
-metric. \CHECK{Read this paragraph and say whether it reflects real deployment
-constraints. If you disagree, propose replacement wording.}
+metric.
 
 The common thread is that benchmark performance and deployment readiness are
 distinct properties, and that the distance between them is not only a matter of
@@ -1329,9 +1322,9 @@ available through Kaggle \cite{kaggleTEP}. All code, configuration files,
 run-level split manifests, frozen hyperparameters, five-seed validation
 outputs, final predictions, class-level metrics, confusion matrices, SHA-256
 data hashes, and the environment specification are deposited at
-\TBD{repository URL} and archived under \TBD{Zenodo DOI}. The analysis of the
-fault-onset window can be reproduced from the deposited predictions without
-refitting any model.
+\url{https://github.com/clarimar/tep-onset-benchmark} and archived under
+\TBD{Zenodo concept DOI}. The analysis of the fault-onset window can be
+reproduced from the deposited predictions without refitting any model.
 
 \section*{CRediT Authorship Contribution Statement}
 
