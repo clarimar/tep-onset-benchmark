@@ -69,53 +69,71 @@ Laboratory at the Pontifical Catholic University of Goiás.
 > Study of Six Classical Classifiers".
 >
 > The Tennessee Eastman Process is among the most widely used benchmarks for
-> fault detection and diagnosis, and the expanded simulation dataset of Rieth
-> et al. has become a common basis for observation-level classification
-> studies. In that dataset each fault is injected after a fixed warm-up
-> interval: sample 21 of 500 in development runs, sample 161 of 960 in official
-> test runs. Observations preceding the injection therefore carry a fault label
-> while describing nominal operation. To our knowledge this asymmetry is rarely
-> stated in published work, and its consequences have not been quantified.
+> fault detection and diagnosis. In both the original distribution and the
+> expanded simulation dataset, each fault is injected after a fixed warm-up
+> interval: sample 21 of 500 in development runs, sample 161 of 960 in test
+> runs. Observations preceding the injection therefore carry a fault label
+> while describing nominal operation. We show that this convention bounds what
+> any observation-level classifier can report, and that its treatment is not
+> standardized across published work.
 >
-> We show that it bounds what any observation-level classifier can report. The
-> convention caps the recall of every fault class at 800/960 = 0.8333; faults 6
-> and 7 attain 0.8333 and 0.8332, that is, the ceiling itself. Rescoring a
-> frozen XGBoost model on the complete official test partition of 10.08 million
-> observations, without refitting, raises macro-F1 from 0.7200 to 0.8054,
-> accuracy from 0.6754 to 0.7949, and MCC from 0.6621 to 0.7852. The apparent
-> validation-to-test generalization gap of +0.0483 in macro-F1 reverses to
-> -0.0125 once both partitions are scored under the same convention.
+> Under literal labeling the recall of every fault class is capped at
+> 800/960 = 0.8333; faults 6 and 7 attain 0.8333 and 0.8332, the ceiling
+> itself. Rescoring a frozen XGBoost model over the complete official test
+> partition of 10.08 million observations, with no refitting, raises macro-F1
+> from 0.7200 to 0.8054, accuracy from 0.6754 to 0.7949 and MCC from 0.6621 to
+> 0.7852. Applying the same protocol to the validation partition turns an
+> apparent validation-to-test generalization gap of +0.0483 in macro-F1 into
+> -0.0125, indicating that the reported gap reflects the difference in
+> mislabeled fraction between the two partitions rather than a loss of
+> generalization.
 >
-> The effect is not a property of any estimator. Across seven classifiers
-> spanning a single decision tree, four ensembles and two linear baselines, the
-> relative accuracy gain falls between 0.142 and 0.150, against a structural
-> bound of 0.1587 derived from the retained fraction of the partition. Faults
-> 3, 9 and 15 and normal operation remain mutually confounded after the
-> artifact is removed, consistent with their long-documented weak
-> observability, which separates a genuine limitation of the measurements from
-> an artifact of the labels.
+> The effect is a property of the labeling convention rather than of any
+> estimator. Across seven classifiers spanning a single decision tree, four
+> ensembles and two linear baselines, the relative accuracy gain falls between
+> 0.142 and 0.150 against a structural bound of 0.1587 derived from the
+> retained fraction of the partition. For calibration of its practical weight:
+> quadrupling the training data from the size used in the frozen fit gains
+> 0.0086 in post-onset macro-F1, while changing the labeling convention on a
+> single fixed model changes it by 0.0854.
 >
-> The benchmark itself follows a leakage-controlled protocol: partitioning by
-> complete simulation runs, standardization fitted on training data only,
-> hyperparameter selection isolated from the test partition, five-seed repeated
-> validation, and a single frozen evaluation on the complete official test set.
-> All code, split manifests, frozen hyperparameters, predictions and metrics
-> are deposited in a public repository.
+> We also document that three studies on the same simulator adopt three
+> different conventions -- relabeling the pre-onset segment as normal,
+> retaining it under the fault label, and not addressing it -- and we offer a
+> structural explanation: in binary detection the pre-onset segment has a
+> natural destination in the normal class, and the false-alarm rate is defined
+> over precisely that segment, whereas in multiclass diagnosis the same move
+> alters the prior of the normal condition and the distinction disappears
+> without being posed as a choice.
+>
+> Faults 3, 9 and 15 and normal operation remain mutually confounded after the
+> correction, consistent with their long-documented weak observability, which
+> separates a genuine limitation of the measurements from an artifact of the
+> labels.
+>
+> The benchmark underlying these results follows a leakage-controlled protocol:
+> partitioning by complete simulation runs, standardization fitted on training
+> data only, hyperparameter selection isolated from the test partition,
+> five-seed repeated validation with Friedman and Nemenyi analysis, and a
+> single frozen evaluation. All code, split manifests, frozen hyperparameters,
+> predictions and metrics are deposited in a public archive; the repository URL
+> and its DOI are withheld from the anonymized manuscript and can be released
+> to the editorial office on request.
 >
 > We believe the work fits the scope of ISA Transactions in fault detection and
-> diagnosis and in the evaluation of data-driven monitoring methods, and that
-> it is of direct interest to practitioners who rely on benchmark results when
-> selecting diagnostic methods for industrial deployment.
+> diagnosis and in the evaluation of data-driven monitoring methods. Two of the
+> authors work in industrial automation, and Section 5.3 addresses what the
+> result means for practitioners who rely on benchmark figures when specifying
+> diagnostic systems.
 >
-> The manuscript is original, has not been published elsewhere, and is not
-> under consideration by another journal. All authors have approved the
-> submission and declare no competing interests.
+> The manuscript is original, has not been published elsewhere and is not under
+> consideration by another journal. All authors have approved the submission
+> and declare no competing interests.
 >
 > Sincerely,
 >
 > Clarimar José Coelho, on behalf of the authors
-
----
+> [e-mail]
 
 ## 4. Before uploading
 
