@@ -90,7 +90,7 @@ body = body.replace("\\end{tabular}", "\\end{tabular}}")
 
 # CRediT names identify the authors: keep the roles, drop the names
 body = body.replace("\\textbf{Alexandre Coelho:}", "\\textbf{First author:}")
-body = body.replace("\\textbf{Rodrigo Ruzi:}", "\\textbf{Second author:}")
+body = body.replace("\\textbf{Rodrigo de Souza Ruzzi:}", "\\textbf{Second author:}")
 body = body.replace("\\textbf{Clarimar Jos\\'e Coelho:}", "\\textbf{Third author:}")
 
 # acknowledgments identify the authors: remove for review

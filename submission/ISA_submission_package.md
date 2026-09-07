@@ -33,15 +33,19 @@ Benchmark: A Leakage-Controlled Study of Six Classical Classifiers
 
 **Authors**
 
-Alexandre Coelho ^a, Rodrigo Ruzi ^a, Clarimar José Coelho ^b,*
+Alexandre Coelho ^a, Rodrigo de Souza Ruzzi ^a, Clarimar José Coelho ^b,*
 
-^a Klug Automação, [city, state], Brazil
+^a Klug Automação, Av. Dep. José Alves dos Santos 2998, Jardim Petrópolis,
+87083-250, Maringá, Paraná, Brazil
 ^b Scientific Computing Laboratory, School of Polytechnic and Arts,
 Pontifical Catholic University of Goiás, Goiânia, Goiás, Brazil
 
 \* Corresponding author.
-E-mail: [address]
-ORCID: 0000-0002-5163-2986
+E-mail: [preencher]
+ORCID: 0000-0002-5163-2986 (C. J. Coelho)
+
+> ORCIDs de Alexandre Coelho e Rodrigo de Souza Ruzzi ainda em branco.
+> Confirme também se o endereço da Klug é o mesmo para os dois autores.
 
 **Acknowledgments**
 
