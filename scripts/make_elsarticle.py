@@ -114,9 +114,12 @@ if _dep:
                  "\\url{%s}. The non-anonymized repository and its archival DOI\n"
                  "are cited in the accepted version." % args.anon_url)
     else:
-        _repl = ("are available for review at \\TBD{anonymous.4open.science URL}.\n"
-                 "The non-anonymized repository and its archival DOI are cited in\n"
-                 "the accepted version.")
+        # No anonymous mirror: state the deposit without identifying it.
+        _repl = ("are deposited in a public archive with a reserved DOI. The\n"
+                 "repository URL and the DOI identify the authors and are\n"
+                 "therefore withheld from this anonymized version; both are\n"
+                 "cited in the accepted version, and the deposit can be released\n"
+                 "to the editor on request during review.")
     body = body[:_dep.start()] + _repl + body[_dep.end():]
 else:
     print("  WARNING: availability statement not matched; check anonymization")
