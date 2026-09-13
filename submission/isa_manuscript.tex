@@ -43,7 +43,7 @@ Fault diagnosis in the Tennessee Eastman Process (TEP) is a standard benchmark
 for data-driven process monitoring, yet published results are difficult to
 compare. We present a leakage-controlled benchmark of six classical
 classifiers: logistic regression, decision tree, random forest,
-histogram-based gradient boosting, linear support vector machine and XGBoost.
+histogram-based gradient boosting, linear  SVM and XGBoost.
 Data were partitioned by complete simulation runs, standardization was fitted
 on training data only, hyperparameters were selected on a separate validation
 partition, variability was measured over five seeds, and the frozen model was
@@ -89,11 +89,11 @@ are available. However, plant-wide systems are frequently nonlinear,
 high-dimensional, stochastic, and only partially observed. These properties
 have motivated data-driven monitoring, in which statistical or machine-learning
 models infer diagnostic boundaries from historical measurements
-\cite{chiang2001book,yin2014review}. Classical multivariate methods such as
+\cite{yin2014review, chiang2001book}. Classical multivariate methods such as
 principal-component analysis (PCA), partial least squares (PLS), and Fisher
 discriminant analysis established important foundations for process monitoring
 \cite{chiang2000discriminant}. More recent studies increasingly employ tree
-ensembles, support vector machines, neural networks, and sequence models to
+ensembles, support vector machine (SVM), neural networks, and sequence models to
 represent nonlinear relationships and dynamic behavior.
 
 The Tennessee Eastman Process (TEP), originally introduced by Downs and Vogel
@@ -118,8 +118,7 @@ operator confidence and generate unnecessary interventions.
 
 This study addresses these limitations through a leakage-controlled benchmark
 of six classical supervised classifiers: logistic regression, decision tree,
-random forest, histogram-based gradient boosting, linear support vector machine
-(SVM), and XGBoost. The study asks five questions:
+random forest, histogram-based gradient boosting, linear SVM, and XGBoost. The study asks five questions:
 
 \begin{enumerate}
   \item Which classical model provides the strongest macro-averaged diagnostic
@@ -158,7 +157,7 @@ Data-driven FDD spans latent-variable modeling, classification, clustering,
 change detection, and temporal modeling. The review by Venkatasubramanian et
 al. \cite{venkatasubramanian2003review} established a broad taxonomy covering
 quantitative models, qualitative models, and process-history-based methods.
-Chiang et al. \cite{chiang2000discriminant,chiang2001book} showed how PCA,
+Chiang et al. \cite{chiang2001book, chiang2000discriminant} showed how PCA,
 discriminant PLS, and Fisher discriminant analysis could support chemical-process
 diagnosis. Later reviews emphasized that industrial data may be nonlinear,
 dynamic, nonstationary, multimodal, and autocorrelated
@@ -197,8 +196,8 @@ implementations in this study were based on scikit-learn
 \cite{pedregosa2011sklearn}, except XGBoost,
 which used its reference implementation \cite{chen2016xgboost}.
 
-Support vector machines have been applied to the TEP in several forms. Chiang
-et al. combined Fisher discriminant analysis with support vector machines for
+SVM have been applied to the TEP in several forms. Chiang
+et al. combined Fisher discriminant analysis with SVM for
 fault diagnosis \cite{chiang2003fdasvm}; Kulkarni et al. incorporated process
 knowledge into the kernel to detect TEP faults \cite{kulkarni2005knowledge};
 and kernel extensions of PCA and independent component analysis were compared
@@ -210,9 +209,8 @@ classifier.
 
 Deep architectures have been applied extensively to the same benchmark. Chadha
 and Schwung compared feedforward and convolutional networks for TEP fault
-detection \cite{chadha2017comparison}; hybrid designs combining support vector
-machines with latent-variable preprocessing \cite{gao2016svm}, hierarchical
-LSTM structures \cite{agarwal2022lstm}, and metaheuristically optimized deep
+detection \cite{chadha2017comparison}; hybrid designs combining SVM with latent-variable preprocessing \cite{gao2016svm}, hierarchical
+long short-term memory (LSTM) structures \cite{agarwal2022lstm}, and metaheuristically optimized deep
 models \cite{anitha2023imvoa} have all reported strong results. Most directly
 comparable to the present study, Lomov et al. \cite{lomov2021temporal}
 evaluated recurrent, attention-based and temporal convolutional architectures
@@ -246,7 +244,7 @@ attached to a record describes the state of the plant at that instant.
 Accuracy can be misleading when performance varies substantially among classes.
 Macro-F1 gives equal importance to every class by averaging class-specific F1
 scores, while weighted-F1 weights them by support. Balanced accuracy averages
-class recalls. MCC summarizes agreement between predictions and true labels and
+class recalls. Matthews correlation coefficient (MCC) summarizes agreement between predictions and true labels and
 remains informative for multiclass problems \cite{matthews1975mcc}. Confusion
 matrices are indispensable because they reveal whether errors are diffuse or
 concentrated in specific class pairs. The present study therefore uses
@@ -268,7 +266,7 @@ standardized; Table~\ref{tab:survey} reports them.
 
 The question applies to both distributions of the benchmark. In the original
 data of Downs and Vogel as distributed by Chiang et al.
-\cite{downs1993tep,chiang2001book}, each condition is simulated for 24 hours in
+\cite{chiang2001book, downs1993tep}, each condition is simulated for 24 hours in
 training and 48 hours in testing at a three-minute interval, giving 480 and 960
 samples, with the fault injected after one hour and eight hours respectively.
 The pre-onset fractions are therefore 4.2\% and 16.7\%, essentially identical
@@ -383,7 +381,7 @@ class had 500 official test runs, yielding
 21\times 500\times 960=10{,}080{,}000
 \end{equation}
 
-test observations. Each class therefore contributed 480,000 observations to
+\noindent test observations. Each class therefore contributed 480,000 observations to
 the final test.
 
 \subsection{Fault-onset windows and labeling protocols}
@@ -411,7 +409,7 @@ R^{\max}_c=\frac{960-160}{960}=0.8333,\qquad c=1,\dots,20,
 \label{eq:ceiling}
 \end{equation}
 
-whenever the classifier assigns pre-onset observations to some class other than
+\noindent whenever the classifier assigns pre-onset observations to some class other than
 $c$. No such ceiling applies to class 0, whose test runs contain no injection.
 Second, because the mislabeled fraction differs between development (4.0\%) and
 test (16.7\%), a metric computed on the two partitions is not measuring the
@@ -462,7 +460,7 @@ z_{ij}=\frac{x_{ij}-\mu_j^{(\mathrm{train})}}
 {\sigma_j^{(\mathrm{train})}},
 \end{equation}
 
-where $\mu_j^{(\mathrm{train})}$ and $\sigma_j^{(\mathrm{train})}$ were
+\noindent where $\mu_j^{(\mathrm{train})}$ and $\sigma_j^{(\mathrm{train})}$ were
 estimated exclusively from the 4.2 million training observations. The fitted
 transformation was then applied unchanged to validation and test data. This
 procedure prevented information from the validation or test partitions from
@@ -960,7 +958,7 @@ its own accuracy.
 
 \subsection{Structure of the remaining errors}
 
-The normalized confusion matrix in Fig.~\ref{fig:confusion} shows that errors
+The normalized confusion matrix in Figure~\ref{fig:confusion} shows that errors
 were not uniformly distributed. They concentrated in the four-class group
 $\{0,3,9,15\}$. Among true class-9 observations, 32.39\% were predicted as
 class 3, 20.24\% as class 0, and 18.08\% as class 15. Normal observations were
@@ -1174,7 +1172,7 @@ misleading to present it as one. Faults 3, 9 and 15 have been reported as
 weakly detectable since the earliest systematic studies of the TEP: monitoring
 statistics based on PCA, discriminant PLS and Fisher discriminant analysis
 report missed-detection rates close to those of nominal operation for exactly
-these conditions \cite{chiang2000discriminant,chiang2001book}, and later
+these conditions \cite{chiang2001book, chiang2000discriminant}, and later
 comparative studies reproduce the pattern across a wide range of data-driven
 statistics \cite{yin2012comparison}. The contribution here is the scale and the
 protocol: the same group is recovered under run-level partitioning, on 10.08
