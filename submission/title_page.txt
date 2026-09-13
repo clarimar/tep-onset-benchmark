@@ -1,0 +1,24 @@
+TITLE
+
+Fault-Onset Labeling Bounds Reported Accuracy in the Tennessee Eastman
+Benchmark: A Leakage-Controlled Study of Six Classical Classifiers
+
+AUTHORS
+
+Alexandre Coelho ^a, Rodrigo de Souza Ruzzi ^a, Clarimar José Coelho ^b,*
+
+^a Klug Automação, Av. Dep. José Alves dos Santos 2998, Jardim Petrópolis,
+87083-250, Maringá, Paraná, Brazil
+^b Scientific Computing Laboratory, School of Polytechnic and Arts,
+Pontifical Catholic University of Goiás, Goiânia, Goiás, Brazil
+
+* Corresponding author.
+E-mail: clarimarc@gmail.com
+ORCID: 0000-0002-5163-2986 (C. J. Coelho)
+
+
+ACKNOWLEDGMENTS
+
+The authors acknowledge the students and researchers associated with the
+MEI0028 Modeling and Simulation activities and the Scientific Computing
+Laboratory at the Pontifical Catholic University of Goiás.
