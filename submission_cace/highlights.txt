@@ -1,0 +1,5 @@
+TEP fault injection at sample 161 caps literal-label recall at 0.833 per fault class
+Rescoring the frozen model post-onset raises macro-F1 from 0.720 to 0.805
+The validation-to-test gap of +0.048 becomes -0.013 under symmetric labeling
+Seven classifiers gain 0.142-0.150 in relative accuracy, near a 0.159 bound
+Faults 3, 9, 15 and normal operation remain confounded after the artifact is removed
