@@ -33,9 +33,8 @@
 %  (b) "How Much of TEP Diagnostic Error Is a Labeling Artifact?
 %       A Leakage-Controlled Benchmark of Classical Classifiers"
 
-\title{\Large\textbf{Fault-Onset Labeling Bounds Reported Accuracy in the
-Tennessee Eastman Benchmark:\\A Leakage-Controlled Study of Six Classical
-Classifiers}}
+\title{\Large\textbf{A Labeling Artifact Bounds Reported Accuracy on the\\
+Tennessee Eastman Benchmark}}
 
 \author{
 Alexandre Coelho\textsuperscript{a},\;
@@ -56,24 +55,25 @@ and Arts,\\
 \maketitle
 
 \begin{abstract}
-Fault diagnosis in the Tennessee Eastman Process (TEP) is a standard benchmark
-for data-driven process monitoring, yet published results are difficult to
-compare. We present a leakage-controlled benchmark of six classical
-classifiers, partitioning by complete simulation runs, standardizing on
-training data only, selecting hyperparameters on a separate validation
-partition, and evaluating the frozen model once on 10.08 million official test
-observations. XGBoost ranked first and reached a
-test macro-F1 of 0.7200 under the labels distributed with the dataset. This figure is bounded by the benchmark itself: each fault is
-injected 160 samples into every 960-sample test run, so literal labeling caps
-the recall of every fault class at 0.8333; faults 6 and 7 attain 0.8333 and
-0.8332, the ceiling itself. Rescoring the same frozen model over the post-onset
-segment, without refitting, raises macro-F1 to 0.8054 and reverses an apparent
-validation-to-test generalization gap of $+0.0483$ to $-0.0125$. Across seven
-classifiers the relative accuracy gain lies between 0.142 and 0.150 against a
-structural bound of 0.1587, so the effect belongs to the labeling convention
-rather than to any estimator. Normal operation and faults 3, 9 and 15 remain
-confounded after the correction, consistent with their known weak
-observability.
+Each fault in the Tennessee Eastman Process (TEP) benchmark is injected 160
+samples into every 960-sample test run, so observations preceding injection
+carry a fault label while describing nominal operation. We show that this
+convention caps the recall of every fault class at $800/960=0.8333$, and that
+the cap binds: faults 6 and 7 attain 0.8333 and 0.8332, the ceiling itself.
+Rescoring a frozen XGBoost model over the post-onset segment of the complete
+official test partition, 10.08 million observations, without refitting, raises
+macro-F1 from 0.7200 to 0.8054 and reverses an apparent validation-to-test
+generalization gap of $+0.0483$ to $-0.0125$. Across seven classifiers spanning
+a single decision tree, four ensembles and two linear baselines, the relative
+accuracy gain lies between 0.142 and 0.150 against a structural bound of
+0.1587, so the effect belongs to the labeling convention rather than to any
+estimator; for comparison, quadrupling the training data gains 0.0086. Three
+studies on the same simulator adopt three different conventions, and we trace
+the divergence to the transition from binary detection, where the false-alarm
+rate is defined over the pre-onset segment, to multiclass diagnosis, where the
+distinction disappears. These results rest on a leakage-controlled benchmark of
+six classical classifiers, partitioned by complete simulation runs, whose
+protocol and computational cost are reported in full.
 \end{abstract}
 
 \noindent\textbf{Keywords:} Tennessee Eastman Process; fault diagnosis;
