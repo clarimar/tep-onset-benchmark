@@ -1,0 +1,70 @@
+Dear Editor,
+
+We submit for your consideration the manuscript "A Labeling Artifact Bounds
+Reported Accuracy on the Tennessee Eastman Benchmark", transferred from
+Computers & Chemical Engineering.
+
+Benchmarks are how engineering disciplines compare methods, and a benchmark
+carries assumptions that are inherited by every study that uses it. This
+manuscript documents one such assumption in the Tennessee Eastman Process, the
+most widely used benchmark for fault detection and diagnosis in industrial
+process monitoring, and shows that it bounds what any study can report on that
+benchmark, independently of the method being evaluated.
+
+Each fault is injected 160 samples into every 960-sample official test run, so
+observations preceding injection carry a fault label while describing nominal
+operation. Under the labels distributed with the dataset this caps the recall
+of every fault class at 800/960 = 0.8333, and the cap binds: faults 6 and 7
+attain 0.8333 and 0.8332, the ceiling itself. Rescoring a frozen XGBoost model
+over the post-onset segment of the complete official test partition, 10.08
+million observations and no refitting, raises macro-F1 from 0.7200 to 0.8054,
+accuracy from 0.6754 to 0.7949 and MCC from 0.6621 to 0.7852. Applying the same
+protocol to the validation partition turns an apparent validation-to-test
+generalization gap of +0.0483 in macro-F1 into -0.0125, showing that the
+reported gap reflects the difference in mislabeled fraction between partitions
+rather than a loss of generalization.
+
+The effect belongs to the labeling convention, not to any estimator. Across
+seven classifiers spanning a single decision tree, four ensembles and two
+linear baselines, the relative accuracy gain lies between 0.142 and 0.150
+against a structural bound of 0.1587 derived from the retained fraction of the
+partition. For calibration of its weight: quadrupling the training data gains
+0.0086 in post-onset macro-F1, an order of magnitude less than the convention.
+
+We further document that three studies on the same simulator adopt three
+different conventions, and we trace the divergence to a transition rather than
+to oversight. In binary detection the pre-onset segment has a natural
+destination in the normal class, and the false-alarm rate is defined over
+precisely that segment, so the convention is built into the evaluation. In
+multiclass diagnosis the same move alters the prior of the normal condition,
+and the distinction disappears without ever being posed as a choice.
+
+We believe the manuscript suits Results in Engineering. Its subject is not a
+new method but the measurement practice surrounding an established engineering
+benchmark, and the finding applies across the methods evaluated on it: the
+classical classifiers reported here are instruments of demonstration rather
+than the contribution. The manuscript reports a complete leakage-controlled
+protocol, the computational cost of all six model families, and a learning
+curve bounding the effect of training set size, so that the comparison between
+the labeling artifact and the ordinary sources of variation is explicit. Two of
+the authors work in industrial automation, and the discussion addresses what
+the result implies for engineers who rely on published benchmark figures when
+specifying diagnostic systems.
+
+The benchmark follows a leakage-controlled protocol: partitioning by complete
+simulation runs, standardization fitted on training data only, hyperparameter
+selection isolated from the test partition, five-seed repeated validation with
+Friedman and Nemenyi analysis, and a single frozen evaluation. All code, split
+manifests, frozen hyperparameters, predictions and metrics are publicly
+available at https://github.com/clarimar/tep-onset-benchmark and archived at
+doi:10.5281/zenodo.22645013.
+
+The manuscript is original, has not been published elsewhere and is not under
+consideration by another journal. All authors have approved the submission and
+declare no competing interests. Our use of AI-assisted tools in preparing the
+manuscript is declared in the paper, before the reference list.
+
+Sincerely,
+
+Clarimar Jose Coelho, on behalf of the authors
+clarimarc@gmail.com
