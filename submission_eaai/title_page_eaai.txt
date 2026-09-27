@@ -1,0 +1,53 @@
+TITLE
+
+A Labeling Artifact Bounds Reported Accuracy on the Tennessee Eastman Benchmark
+
+AUTHORS
+
+Alexandre Coelho (a), Rodrigo de Souza Ruzzi (a), Clarimar Jose Coelho (b),*
+
+(a) Klug Automacao Solucoes em Engenharia LTDA, Av. Dep. Jose Alves dos Santos
+    2998, Jardim Petropolis, 87083-250, Maringa, Parana, Brazil
+
+(b) Scientific Computing Laboratory, School of Polytechnic and Arts, Pontifical
+    Catholic University of Goias, 1a Avenida 458-590, Setor Leste
+    Universitario, 74605-020, Goiania, Goias, Brazil
+
+* Corresponding author.
+  Clarimar Jose Coelho
+  Scientific Computing Laboratory, School of Polytechnic and Arts,
+  Pontifical Catholic University of Goias, 1a Avenida 458-590,
+  Setor Leste Universitario, 74605-020, Goiania, Goias, Brazil
+  E-mail: clarimarc@gmail.com
+  ORCID: 0000-0002-5163-2986
+
+ACKNOWLEDGEMENTS
+
+The authors acknowledge the students and researchers associated with the
+MEI0028 Modeling and Simulation activities and the Scientific Computing
+Laboratory at the Pontifical Catholic University of Goias.
+
+DECLARATION OF COMPETING INTERESTS
+
+The authors declare that they have no known competing financial interests or
+personal relationships that could have appeared to influence the work reported
+in this paper.
+
+FUNDING
+
+This research did not receive any specific grant from funding agencies in the
+public, commercial, or not-for-profit sectors.
+
+DECLARATION OF GENERATIVE AI AND AI-ASSISTED TECHNOLOGIES IN THE MANUSCRIPT
+PREPARATION PROCESS
+
+During the preparation of this work the authors used Anthropic's Claude in
+order to draft and revise passages of the manuscript, to write the analysis
+scripts used for the post-onset rescoring, the run-level bootstrap and the
+learning curve, and to assist with the literature search. The study design, the
+experimental protocol, the frozen benchmark and all reported measurements
+derive from code executed by the authors on their own data; no quantitative
+result was produced or altered by the tool. After using this tool the authors
+reviewed and edited the content as needed, verified every reported figure
+against the deposited outputs, and take full responsibility for the content of
+the published article.

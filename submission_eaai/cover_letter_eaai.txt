@@ -1,0 +1,64 @@
+Dear Editor,
+
+We submit for your consideration the manuscript "A Labeling Artifact Bounds
+Reported Accuracy on the Tennessee Eastman Benchmark" as an Original Research
+article.
+
+Following the journal's requirement that the abstract specify both components,
+we state them here as well. The engineering application is multiclass fault
+diagnosis in industrial chemical processes, evaluated on the Tennessee Eastman
+Process, the most widely used public benchmark for data-driven process
+monitoring. The artificial intelligence contribution is an evaluation result:
+we show that a labeling convention embedded in that benchmark bounds the
+performance any supervised classifier can report on it, quantify the bound, and
+demonstrate that it is independent of the learning algorithm.
+
+Each fault is injected 160 samples into every 960-sample official test run, so
+observations preceding injection carry a fault label while describing nominal
+operation. Under the labels distributed with the dataset this caps the recall
+of every fault class at 800/960 = 0.8333, and the cap binds: faults 6 and 7
+attain 0.8333 and 0.8332, the ceiling itself. Rescoring a frozen gradient
+boosting model over the post-onset segment of the complete official test
+partition, 10.08 million observations and no refitting, raises macro-F1 from
+0.7200 to 0.8054, accuracy from 0.6754 to 0.7949 and the Matthews correlation
+coefficient from 0.6621 to 0.7852. Applying the same protocol to the validation
+partition turns an apparent validation-to-test generalization gap of +0.0483 in
+macro-F1 into -0.0125.
+
+The effect belongs to the convention rather than to any estimator. Across seven
+classifiers spanning a single decision tree, four ensembles and two linear
+baselines, the relative accuracy gain lies between 0.142 and 0.150 against a
+structural bound of 0.1587 derived from the retained fraction of the partition.
+For calibration: quadrupling the training data gains 0.0086 in post-onset
+macro-F1, an order of magnitude less than the convention. We further document
+that three published studies on the same simulator adopt three different
+conventions, and trace the divergence to the transition from binary detection,
+where the false-alarm rate is defined over the pre-onset segment, to multiclass
+diagnosis, where the distinction disappears.
+
+The work is validated on a public dataset, as the journal requires: the
+Tennessee Eastman simulation data are available from Harvard Dataverse
+(doi:10.7910/DVN/6C3JR1) and are not redistributed by us. All code,
+configuration files, run-level split manifests, frozen hyperparameters,
+five-seed validation outputs, final predictions, class-level metrics, confusion
+matrices, SHA-256 data hashes and the environment specification are deposited
+in a public archive with a reserved DOI; the repository URL and the DOI
+identify the authors and are therefore withheld from the anonymized manuscript,
+and can be released to the editorial office on request.
+
+The manuscript is formatted in single column, is 32 pages long, and the
+abstract is 217 words. It does not propose a metaphor-based metaheuristic. Two
+of the authors work in industrial automation, and the discussion addresses what
+the result implies for engineers who rely on published benchmark figures when
+specifying diagnostic systems.
+
+The manuscript is original, has not been published elsewhere and is not under
+consideration by another journal. All authors have approved the submission and
+declare no competing interests. Our use of AI-assisted tools in preparing the
+manuscript is declared on the title page and in the manuscript, before the
+reference list.
+
+Sincerely,
+
+Clarimar Jose Coelho, on behalf of the authors
+clarimarc@gmail.com

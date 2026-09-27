@@ -25,7 +25,7 @@ import argparse, io, os, re, sys
 ap = argparse.ArgumentParser()
 ap.add_argument("--src", default="article/main.tex")
 ap.add_argument("--out", default="submission/isa_manuscript.tex")
-ap.add_argument("--journal", default="ISA Transactions")
+ap.add_argument("--journal", default="Engineering Applications of Artificial Intelligence")
 ap.add_argument("--anon-url", default=None,
                 help="anonymous.4open.science mirror used during blinded review; "
                      "without it the placeholder is kept and the build will show "
@@ -37,16 +37,15 @@ if not os.path.exists(args.src):
 os.makedirs(os.path.dirname(args.out) or ".", exist_ok=True)
 s = io.open(args.src, encoding="utf-8").read()
 
-TITLE = ("Fault-Onset Labeling Bounds Reported Accuracy in the Tennessee "
-         "Eastman Benchmark: A Leakage-Controlled Study of Six Classical "
-         "Classifiers")
+TITLE = ("A Labeling Artifact Bounds Reported Accuracy on the "
+         "Tennessee Eastman Benchmark")
 
 HIGHLIGHTS = [
-    "TEP fault injection at sample 161 caps literal-label recall at 0.833 per fault class",
-    "Rescoring the frozen model post-onset raises macro-F1 from 0.720 to 0.805",
+    "Fault injection at sample 161 caps literal-label recall at 0.833 on the TEP",
+    "Rescoring one frozen model post-onset raises macro-F1 from 0.720 to 0.805",
     "The validation-to-test gap of +0.048 becomes -0.013 under symmetric labeling",
-    "Seven classifiers gain 0.142-0.150 in relative accuracy, near a 0.159 bound",
-    "Faults 3, 9, 15 and normal operation remain confounded after the artifact is removed",
+    "Seven classifiers gain 0.142-0.150 relative accuracy, near a 0.159 bound",
+    "Three studies on the same simulator adopt three different label conventions",
 ]
 
 KEYWORDS = ("Tennessee Eastman Process \\sep fault diagnosis \\sep machine "
@@ -160,7 +159,7 @@ preamble = r"""%% ISA Transactions -- blinded submission (elsarticle)
 
 \title{TITLETEXT}
 
-%% Author block omitted: ISA Transactions uses double-anonymized review.
+%% Author block omitted: this journal uses double-anonymized review.
 %% Names, affiliations and the corresponding author go on the separate
 %% title page.
 

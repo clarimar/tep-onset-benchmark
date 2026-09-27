@@ -1,0 +1,5 @@
+Fault injection at sample 161 caps literal-label recall at 0.833 on the TEP
+Rescoring one frozen model post-onset raises macro-F1 from 0.720 to 0.805
+The validation-to-test gap of +0.048 becomes -0.013 under symmetric labeling
+Seven classifiers gain 0.142-0.150 relative accuracy, near a 0.159 bound
+Three studies on the same simulator adopt three different label conventions
