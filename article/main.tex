@@ -18,20 +18,6 @@
 \graphicspath{{figures/}}
 \captionsetup{font=small,labelfont=bf}
 
-% =================================================================
-% REVISION MARKERS -- REMOVE BEFORE SUBMISSION
-% \TBD{...} marks a value that must be recomputed from the saved
-% predictions before submission. Run scripts/postonset_analysis.py
-% and replace every marker. Compile will show them in red.
-% =================================================================
-\newcommand{\TBD}[1]{\textcolor{red}{\textbf{[TBD:~#1]}}}
-
-% Alternative titles that foreground the new contribution:
-%  (a) "Fault-Onset Labeling Determines Reported Accuracy in the
-%       Tennessee Eastman Benchmark: A Reproducible Study of Six
-%       Classical Classifiers"
-%  (b) "How Much of TEP Diagnostic Error Is a Labeling Artifact?
-%       A Leakage-Controlled Benchmark of Classical Classifiers"
 
 \title{\Large\textbf{A Labeling Artifact Bounds Reported Accuracy on the\\
 Tennessee Eastman Benchmark}}
@@ -60,20 +46,21 @@ samples into every 960-sample test run, so observations preceding injection
 carry a fault label while describing nominal operation. We show that this
 convention caps the recall of every fault class at $800/960=0.8333$, and that
 the cap binds: faults 6 and 7 attain 0.8333 and 0.8332, the ceiling itself.
-Rescoring a frozen XGBoost model over the post-onset segment of the complete
-official test partition, 10.08 million observations, without refitting, raises
-macro-F1 from 0.7200 to 0.8054 and reverses an apparent validation-to-test
-generalization gap of $+0.0483$ to $-0.0125$. Across seven classifiers spanning
-a single decision tree, four ensembles and two linear baselines, the relative
-accuracy gain lies between 0.142 and 0.150 against a structural bound of
-0.1587, so the effect belongs to the labeling convention rather than to any
-estimator; for comparison, quadrupling the training data gains 0.0086. Three
-studies on the same simulator adopt three different conventions, and we trace
-the divergence to the transition from binary detection, where the false-alarm
-rate is defined over the pre-onset segment, to multiclass diagnosis, where the
-distinction disappears. These results rest on a leakage-controlled benchmark of
-six classical classifiers, partitioned by complete simulation runs, whose
-protocol and computational cost are reported in full.
+Rescoring a frozen gradient-boosting model over the post-onset segment of the
+complete official test partition, 10.08 million observations and no refitting,
+raises macro-F1 from 0.7200 to 0.8054 and reverses an apparent
+validation-to-test generalization gap of $+0.0483$ to $-0.0125$. Across seven
+classifiers spanning a single decision tree, four ensembles and two linear
+baselines, the relative accuracy gain lies between 0.142 and 0.150 against a
+structural bound of 0.1587, so the effect belongs to the labeling convention
+rather than to any estimator; for comparison, quadrupling the training data
+gains 0.0086. Three published studies on the same simulator adopt three
+different conventions, and we trace the divergence to the transition from
+binary detection, where the false-alarm rate is defined over the pre-onset
+segment, to multiclass diagnosis, where the distinction disappears. These
+results rest on a leakage-controlled benchmark of six classical classifiers
+partitioned by complete simulation runs, and they bound what any
+observation-level method evaluated on this benchmark can report.
 \end{abstract}
 
 \noindent\textbf{Keywords:} Tennessee Eastman Process; fault diagnosis;
